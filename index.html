@@ -1,0 +1,590 @@
+<!-- Output: html --><!-- Filename: 奥穂村_泥かけ深田御田植祭公式ホームページ -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>★ようこそ！奥穂村「泥かけ深田御田植祭」公式ホームページへ★</title>
+<style>
+  /* 2000年代初頭のレトロWebスタイル定義 */
+  body {
+    background-color: #FFFFCC;
+    background-image: radial-gradient(#E6E699 1px, transparent 1px);
+    background-size: 16px 16px;
+    color: #000000;
+    font-family: "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+  a:link { color: #0000FF; text-decoration: underline; }
+  a:visited { color: #800080; text-decoration: underline; }
+  a:hover { color: #FF0000; background-color: #FFFF00; }
+
+  .layout-table {
+    width: 100%;
+    min-height: 100vh;
+    border-collapse: collapse;
+  }
+  .sidebar {
+    width: 210px;
+    background-color: #CCFFCC;
+    border-right: 4px ridge #99CC99;
+    vertical-align: top;
+    padding: 10px;
+  }
+  .main-content {
+    vertical-align: top;
+    padding: 15px 25px;
+  }
+  .title-banner {
+    background-color: #006600;
+    color: #FFFFFF;
+    border: 4px outset #66CC66;
+    padding: 10px;
+    text-align: center;
+    font-family: "ＭＳ Ｐ明朝", "MS PMincho", serif;
+  }
+  .title-banner h1 {
+    font-size: 24px;
+    margin: 5px 0;
+    letter-spacing: 2px;
+    color: #FFFF00;
+    text-shadow: 2px 2px #000000;
+  }
+  .marquee-box {
+    background-color: #000000;
+    color: #00FF00;
+    padding: 4px;
+    font-weight: bold;
+    border: 2px inset #CCCCCC;
+    margin: 10px 0;
+  }
+  .counter-box {
+    background-color: #000000;
+    color: #FF0000;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border: 2px inset #888888;
+    letter-spacing: 3px;
+  }
+  .menu-btn {
+    display: block;
+    background-color: #FFFFFF;
+    border: 3px outset #CCCCCC;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #0000FF;
+    text-decoration: underline;
+    font-size: 13px;
+  }
+  .menu-btn:hover {
+    background-color: #FFFF99;
+    color: #FF0000;
+  }
+  .menu-btn:active {
+    border-style: inset;
+  }
+  .retro-table {
+    border: 3px ridge #999999;
+    background-color: #FFFFFF;
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100%;
+    max-width: 720px;
+    margin: 10px auto;
+  }
+  .retro-table th {
+    background-color: #339933;
+    color: #FFFFFF;
+    border: 1px solid #666666;
+    padding: 6px;
+    text-align: left;
+  }
+  .retro-table td {
+    border: 1px solid #999999;
+    padding: 6px;
+    background-color: #FFFFFF;
+  }
+  .section-heading {
+    background-color: #FFCC66;
+    border-left: 8px solid #CC6600;
+    border-bottom: 2px solid #CC6600;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #660000;
+    max-width: 700px;
+    margin: 20px auto 10px auto;
+  }
+  .content-box {
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .new-blink {
+    color: #FF0000;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #FFFF00;
+    padding: 1px 3px;
+    border: 1px solid #FF0000;
+  }
+  .photo-placeholder {
+    background-color: #DDDDDD;
+    border: 2px inset #999999;
+    width: 210px;
+    height: 150px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #333333;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .page-section {
+    display: none;
+  }
+  .page-section.active {
+    display: block;
+  }
+  hr.retro-hr {
+    border: 2px ridge #99CC99;
+    margin: 20px 0;
+  }
+  .construction {
+    background-color: #FFFF00;
+    color: #000000;
+    border: 2px dashed #FF0000;
+    padding: 4px 8px;
+    font-weight: bold;
+    display: inline-block;
+  }
+</style>
+<script>
+  function showPage(pageId) {
+    var pages = document.querySelectorAll('.page-section');
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove('active');
+    }
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</head>
+<body>
+
+<table class="layout-table">
+  <tr>
+    <!-- 左側メニューフレーム -->
+    <td class="sidebar">
+      <div style="text-align:center; margin-bottom:15px;">
+        <b style="color:#006600; font-size:15px;">◆ メニュー ◆</b><br>
+        <span style="font-size:11px;">（クリックで切り替わります）</span>
+      </div>
+
+      <div class="menu-btn" onclick="showPage('page-top')">● トップページ（最新情報）</div>
+      <div class="menu-btn" onclick="showPage('page-history')">● お祭りの歴史・由来</div>
+      <div class="menu-btn" onclick="showPage('page-archive')">● 活動記録（写真館）<span class="new-blink">UP!</span></div>
+      <div class="menu-btn" onclick="showPage('page-join')">● 参加方法・予約（仮）</div>
+      <div class="menu-btn" onclick="showPage('page-univ')">● 連携大学（農教大学）</div>
+
+      <hr class="retro-hr">
+
+      <div style="font-size:12px; background:#FFFFFF; border:2px inset #999; padding:6px;">
+        <b>【管理人プロフィール】</b><br>
+        名前：田所 源蔵（66歳）<br>
+        役職：深田御田植祭保存会 会長<br>
+        愛用機：Canon IXY DIGITAL<br>
+        一言：息子のパソコンを借りてホームページを作りました。写真のサイズ変更が難しく、重かったらすみません。
+      </div>
+
+      <hr class="retro-hr">
+
+      <div style="text-align:center; font-size:11px;">
+        <div style="border:1px solid #000; background:#FFF; padding:3px; margin-bottom:5px;">
+          <b>奥穂村役場 観光課</b><br>
+          （バナー準備中）
+        </div>
+        <div style="border:1px solid #000; background:#FFF; padding:3px; margin-bottom:5px;">
+          <b>私立 農教大学</b><br>
+          ～緑と大地の女子教育～
+        </div>
+        <br>
+        ※当サイトはリンクフリーです。<br>
+        相互リンクご希望の方は掲示板（現在スパム対策で閉鎖中）かメールにて！<br><br>
+        推奨環境：Internet Explorer 6.0以上<br>
+        画面サイズ：800×600
+      </div>
+    </td>
+
+    <!-- 右側メインフレーム -->
+    <td class="main-content">
+
+      <!-- 共通ヘッダー -->
+      <div class="content-box">
+        <div class="title-banner">
+          <div style="font-size:12px;">～ 穂乃国県・奥穂村無形民俗文化財指定 ～</div>
+          <h1>★ 泥かけ深田（ふかだ）御田植祭 ★</h1>
+          <div style="font-size:13px;">奥穂神社奉納・深田御田植祭保存会 公式ホームページ</div>
+        </div>
+
+        <div class="marquee-box">
+          <marquee scrollamount="5">★★★ 今年の夏も開催決定！泥パック以上の美肌効果と口コミで大人気！私立・農教大学の学生さんや県外からの観光客の皆さんも大歓迎！ただいま参加者募集中です！！ ★★★</marquee>
+        </div>
+
+        <div style="text-align:center; margin:10px 0;">
+          あなたは <span class="counter-box">014892</span> 人目の泥んこ参拝者です！<br>
+          <span style="font-size:11px; color:#666666;">（※キリ番15000番を踏まれた方には奥穂村特産「神田米2kg」を進呈！自己申告制です）</span>
+        </div>
+      </div>
+
+      <hr class="retro-hr">
+
+      <!-- ==================== 1. トップページ ==================== -->
+      <div id="page-top" class="page-section active">
+        <div class="content-box">
+          <div style="text-align:center; background:#FFEEEE; border:2px solid #FF0000; padding:8px; margin-bottom:15px;">
+            <b style="color:#FF0000; font-size:16px;">【重要なお知らせ】田植え祭りの参加衣装（指定服）の変更について</b><br>
+            これまで「白Tシャツ（袖に農教大の筆文字）＋ショートパンツ」を基本としておりましたが、<br>
+            神田（深田）の泥が非常に深く、Tシャツが泥の重みで破れたり作業の妨げになるため、<br>
+            <b>本年度より「大学・保存会指定のスクール水着（紺色・白パイピング）」の着用に統一</b>いたしました！
+          </div>
+
+          <div class="section-heading">■ 最新ニュース・更新履歴（What's New!）</div>
+          <div style="height:180px; overflow-y:scroll; border:2px inset #999999; background:#FFFFFF; padding:8px;">
+            <p style="margin:4px 0;"><b>2005/08/15</b> <span class="new-blink">NEW!</span> 「活動記録」に8月第2土日の写真（農教大1年生の皆さんの泥んこ奮闘記）を12枚追加しました！会長のデジカメで撮影しました。</p>
+            <p style="margin:4px 0;"><b>2005/07/20</b> <span class="new-blink">NEW!</span> 参加方法ページの「指定スクール水着」の貸出サイズ表を更新しました。</p>
+            <p style="margin:4px 0;"><b>2005/06/12</b> 雑誌『月刊ふるさと美肌紀行』に当祭りの「神田の天然ミネラル泥パック効果」が紹介されました！</p>
+            <p style="margin:4px 0;"><b>2005/05/01</b> 私立農教大学・地域農学科の必修単位（地域伝統農法実習）として今年度も140名の参加が決定しました。</p>
+            <p style="margin:4px 0;"><b>2004/11/03</b> ホームページを開設しました。まだ工事中の場所が多いですがよろしくお願いします。</p>
+          </div>
+
+          <div class="section-heading">■ 会長からのご挨拶と祭りのご紹介</div>
+          <table class="retro-table">
+            <tr>
+              <td style="width:160px; text-align:center; background:#F0F0F0;">
+                <div class="photo-placeholder" style="width:140px; height:140px;">
+                  [画像: DSC_0001.JPG]<br><br>
+                  保存会会長<br>田所 源蔵（66）<br>（軽トラの前で撮影）
+                </div>
+              </td>
+              <td>
+                全国の皆様、こんにちは。奥穂村で代々米農家を受け継いでおります、保存会会長の田所です。<br>
+                私どもの「泥かけ深田御田植祭」は、普通の田植えとは違います。<b>膝下までズブズブと沈む特別な「深田（ふかだ）」</b>に入り、どんな困難にも負けず奥深くまで苗を植えることで、山の神様に感謝と豊作を祈る伝統神事です。<br><br>
+                周りにいる地元の男衆が、田植えをする女性たちに縁起担ぎとして泥をかけてあげる習わしがあり、最初は驚かれますが、この奥穂の泥はキメが細かく<b>「高級エステの泥パック以上に肌がツルツルになる！」</b>と、今では地元の農教大学の女子学生さんや、都会から来る若い女性の観光客の皆様に大変喜ばれております。<br>
+                泥だらけになって笑って転んで、心も体も綺麗になって帰ってください！
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==================== 2. 歴史（お祭りの歴史） ==================== -->
+      <div id="page-history" class="page-section">
+        <div class="content-box">
+          <div class="section-heading">■ 奥穂神社奉納「泥かけ深田御田植祭」の歴史と由来</div>
+
+          <table class="retro-table">
+            <tr>
+              <th>１．起源は室町時代・「困難への感謝」の儀式</th>
+            </tr>
+            <tr>
+              <td>
+                奥穂村は四方を急峻な山々に囲まれ、湧き水が豊富な反面、田んぼの底が深くぬかるむ「深田（ふかだ）」が多い土地でした。<br>
+                その昔、足が抜けないほど深い泥田での田植えは大変な重労働でした。そこで村人たちは「この深い泥こそが山の神様の恵みである」と考え、あえて最も深い神田（しんでん・水深および泥深40～50cm）を選び、<b>「どれほど困難な状況であっても、笑顔で神様に感謝しながら奥深くまで苗を植え切る」</b>という奉納儀式を始めたのが起源と伝えられています（『奥穂村郷土史』より）。
+              </td>
+            </tr>
+            <tr>
+              <th>２．なぜ女性が植え、男性が泥をかけるのか？</th>
+            </tr>
+            <tr>
+              <td>
+                古来、新しい命を育む田植えは「早乙女（さおとめ）」と呼ばれる若い女性のみが神田に入ることを許された神聖な役目でした。<br>
+                一方、田んぼの周囲（畦道）に立つ男性たちは、深い泥の中で悪戦苦闘する女性たちへ<b>「厄除け・無病息災・豊作」の縁起物として、神田の泥をすくって優しくかけてあげる（泥かけの儀）</b>役割を担いました。<br>
+                ※決して乱暴に投げつけるのではなく、「今年もよろしく頼むぞ」「泥の恵みを受け取ってくれ」と声をかけながら、肩や背中に泥をかけてあげる温かい風習です。
+              </td>
+            </tr>
+            <tr>
+              <th>３．時代による服装の変遷（無衣の神事から指定スクール水着へ）</th>
+            </tr>
+            <tr>
+              <td>
+                <ul>
+                  <li><b>【古代～明治初期まで】</b><br>
+                  かつては「生まれたままの清らかな姿で神様の泥を全身に浴びる」という厳格な神事であったため、参加する女性は衣類を一切着用せずに深田へ入っていました。</li>
+                  <li><b>【昭和～平成初期】</b><br>
+                  時代の変化とともに、白い襦袢（じゅばん）や、近年では私立農教大学の体操着（袖に「農教大」と書かれたオーバーサイズの白Tシャツをへそ出しで結ぶスタイル＋ジャージのショートパンツ）で参加するようになりました。</li>
+                  <li><b>【現在（指定スクール水着への統一）】</b><br>
+                  神田の泥は膝下まで深く、転倒したり泥をかけられたりするうちにTシャツが泥水を吸って数キロの重さになり、動けなくなる学生が続出しました。<br>
+                  そこで「かつての『肌で直接神田の泥を受け止める』という神事の本来の意味に立ち返りつつ、現代において最も安全かつ動きやすい服装」として、<b>農教大学および保存会指定のスクール水着（濃紺・白パイピングのワンピース型）</b>を着用するルールへと正式に変更されました。</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>４．現代のブーム：「神田の美肌泥パック」としての人気</th>
+            </tr>
+            <tr>
+              <td>
+                収穫量そのものよりも「儀式とお祭り」としての意味合いが強い現在、奥穂の山々から流れ込む珪酸（ケイ酸）や天然ミネラルを豊富に含んだ神田の超微粒子泥が、<b>「全身に浴びて洗い流すと、市販の泥パック以上に肌がモチモチ・スベスベになる！」</b>と口コミで広がりました。<br>
+                水着姿で惜しみなく全身に泥を塗ってもらえることから、農教大の学生さんだけでなく、県外からも多くの若い女性観光客が訪れる夏の一大イベントとなっています。
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==================== 3. 活動記録（写真館） ==================== -->
+      <div id="page-archive" class="page-section">
+        <div class="content-box">
+          <div class="section-heading">■ 活動記録・泥んこ写真館（毎年5月～9月・土日開催分）</div>
+          <p>
+            ※神田の稲作体験および泥かけ祭りは、5月の本祭から9月の秋口まで、毎月の土曜日・日曜日に地区を分けて開催しています。<br>
+            ※写真はすべて保存会会長（田所・66歳）がコンパクトデジカメで撮影した無加工の写真です。フィルター等は使い方が分からないためそのまま載せています。
+          </p>
+
+          <!-- 8月記録 -->
+          <table class="retro-table">
+            <tr>
+              <th colspan="2">★ 2005年8月 第2土日（8月13日・14日） 農教大・夏期集中実習＆観光開放デー</th>
+            </tr>
+            <tr>
+              <td style="width:230px; text-align:center;">
+                <div class="photo-placeholder">
+                  [画像: DSC_0201.JPG]<br>
+                  (640x480 / 142KB)<br><br>
+                  <b>【1人で奥深く苗を植える様子】</b><br>
+                  膝下まで泥に沈みながら頑張る農教大1年・佐藤さん
+                </div>
+              </td>
+              <td>
+                <b>撮影日：8月13日（土） 午後1時頃 / 天気：快晴（猛暑）</b><br>
+                今年から導入された「指定スクール水着（紺・白ライン）」での田植え風景です。普通の田んぼより深いので、膝下までスッポリ泥に埋まっています。<br>
+                1人で黙々と深い場所へ苗を差し込んでいるところに、保存会の男衆から縁起の泥が肩にかけられ、ツヤツヤの泥パック状態になっています。
+              </td>
+            </tr>
+            <tr>
+              <td style="width:230px; text-align:center;">
+                <div class="photo-placeholder">
+                  [画像: DSC_0215.JPG]<br>
+                  (640x480 / 156KB)<br><br>
+                  <b>【友人3人で笑いながら田植え】</b><br>
+                  横一列で前かがみになり泥をかけられる3人組
+                </div>
+              </td>
+              <td>
+                <b>撮影日：8月13日（土） 午後2時頃 / 天気：快晴</b><br>
+                仲良し3人組で横一列になり、足を取られないようにお互い支え合いながら前かがみで植えているところです。<br>
+                周りから「美肌になれよー！」と優しい泥かけを受け、3人とも顔や肩までドロドロになりながら大笑いしています。若い方の笑い声で神田が明るくなりますね。
+              </td>
+            </tr>
+          </table>
+
+          <!-- 7月記録 -->
+          <table class="retro-table">
+            <tr>
+              <th colspan="2">★ 2005年7月 第4土日（7月23日・24日） 盛夏の泥かけ奉納祭</th>
+            </tr>
+            <tr>
+              <td style="width:230px; text-align:center;">
+                <div class="photo-placeholder">
+                  [画像: DSC_0188.JPG]<br>
+                  (640x480 / 138KB)<br><br>
+                  <b>【全身ドロドロで満面の笑み】</b><br>
+                  水着の色が見えないほど泥まみれでピース！
+                </div>
+              </td>
+              <td>
+                <b>撮影日：7月24日（日） 午後3時頃 / 天気：晴れ</b><br>
+                東京から観光で参加された20代の女性お二人です。水着の紺色も白い肩紐も分からなくなるほど全身に神田の泥を塗りたくって、「泥が冷たくて気持ちいい！お肌がツルツル！」とカメラに向かって満面の笑みを見せてくれました。太陽の光で泥がテカテカ光っております。
+              </td>
+            </tr>
+            <tr>
+              <td style="width:230px; text-align:center;">
+                <div class="photo-placeholder">
+                  [画像: DSC_0194.JPG]<br>
+                  (640x480 / 160KB)<br><br>
+                  <b>【名物！深田に尻もち転倒シーン】</b><br>
+                  バランスを崩して泥の中に座り込んだ瞬間
+                </div>
+              </td>
+              <td>
+                <b>撮影日：7月24日（日） 午後3時30分頃 / 天気：晴れ</b><br>
+                <b>【ベストショット賞】</b> 深い泥から足を抜こうとしてバランスを崩し、後ろ向きにバシャン！と尻もちをついて倒れてしまった決定的瞬間です。<br>
+                片手を泥について、もう片方の手では「苗だけは濡らさないぞ！」と高く掲げながら大笑いしている姿に、畦道の見物客からも大きな拍手が起きました。
+              </td>
+            </tr>
+          </table>
+
+          <!-- 5月・6月アーカイブリンク -->
+          <div style="background:#EEEEEE; border:2px ridge #CCCCCC; padding:10px; margin-top:15px;">
+            <b>▼ 過去の活動記録（クリックすると別ウィンドウで開きます ※現在準備中）</b>
+            <ul style="margin:5px 0;">
+              <li>2005年6月 第2・第4土日（梅雨の合間の泥かけ田植え・写真24枚）</li>
+              <li>2005年5月 第3土日（春季例大祭・白Tシャツへそ出しスタイル最終回・写真30枚）</li>
+              <li>2004年度 活動記録まとめ（農教大寮生120名参加・写真50枚）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== 4. 参加方法・予約（仮） ==================== -->
+      <div id="page-join" class="page-section">
+        <div class="content-box">
+          <div class="section-heading">■ 当日の参加の流れ・服装規定・注意事項</div>
+
+          <table class="retro-table">
+            <tr>
+              <th style="width:140px;">STEP 1：受付・着替え</th>
+              <td>
+                朝9時30分までに「奥穂神社・社務所横テント」へ集合してください。<br>
+                更衣室（男女別プレハブ）にて、<b>保存会・農教大指定のスクール水着（紺色・白パイピング）</b>に着替えます。<br>
+                ※一般の観光客の方には、受付にて指定水着を無料貸出（または実費2,500円で販売）しております。私物のビキニ等は泥の重みで外れる危険があるため着用できません。
+              </td>
+            </tr>
+            <tr>
+              <th>STEP 2：お祓い・入田</th>
+              <td>
+                10時00分より神主による豊作祈願のお祓いを受けた後、一斉に神田（深田）へ入ります。<br>
+                足元が膝下（約40～50cm）まで一気に沈みますので、最初は隣の友人やロープに掴まってゆっくり進んでください。
+              </td>
+            </tr>
+            <tr>
+              <th>STEP 3：田植え・泥かけ</th>
+              <td>
+                横一列に並び、前かがみになって深い泥の底までしっかりと苗を植え付けます。<br>
+                作業中、周囲の保存会員や男性参加者から縁起物の泥がかけられます。顔や肩にかかった泥は落とさず、そのままお肌に馴染ませるのが美肌の秘訣です！転んでも泥がクッションになるので痛くありません。
+              </td>
+            </tr>
+            <tr>
+              <th>STEP 4：温水シャワー・直会（なおらい）</th>
+              <td>
+                12時30分頃終了。農教大学から提供された農業用温水シャワー設備で泥を洗い流します（シャンプー・石鹸完備）。<br>
+                その後、公民館にて地元のお母さんたちが握った「神田米のおにぎり」と「豚汁」が振る舞われます。
+              </td>
+            </tr>
+          </table>
+
+          <div class="section-heading">■ 参加予約フォーム（仮設）</div>
+          <div style="margin-bottom:10px;">
+            <span class="construction">🚧 工事中：自動送信プログラムがうまく動かないため、送信ボタンを押すとメールソフトが立ち上がります 🚧</span>
+          </div>
+
+          <form onsubmit="alert('【テスト送信】\nご予約ありがとうございます！\n保存会会長・田所のパソコンへメールを送信します。\n（※農作業中で返信に3～4日かかる場合がございます）'); return false;">
+            <table class="retro-table" style="background:#F9F9F9;">
+              <tr>
+                <th style="width:180px;">お名前（代表者）</th>
+                <td><input type="text" size="30" placeholder="例：穂乃国 花子"></td>
+              </tr>
+              <tr>
+                <th>参加区分</th>
+                <td>
+                  <label><input type="radio" name="type" checked> 私立・農教大学の学生（必修・単位認定枠）</label><br>
+                  <label><input type="radio" name="type"> 一般観光客・女性（田植え＆美肌泥パック体験枠）</label><br>
+                  <label><input type="radio" name="type"> 一般観光客・男性（畦道からの縁起泥かけ・撮影枠）</label>
+                </td>
+              </tr>
+              <tr>
+                <th>ご希望の土日日程</th>
+                <td>
+                  <select>
+                    <option>2005年 8月 第4土曜日（空きあり）</option>
+                    <option>2005年 8月 第4日曜日（残りわずか！）</option>
+                    <option>2005年 9月 第1土曜日（空きあり）</option>
+                    <option>2005年 9月 第1日曜日（空きあり）</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>参加人数</th>
+                <td><input type="text" size="5" value="3"> 名 （※友人同士での3名横並び参加が大人気です！）</td>
+              </tr>
+              <tr>
+                <th>指定スクール水着の用意</th>
+                <td>
+                  <select>
+                    <option>農教大生なので自前の指定水着を持参します</option>
+                    <option>当日レンタルを希望（Sサイズ）</option>
+                    <option>当日レンタルを希望（Mサイズ）</option>
+                    <option>当日レンタルを希望（Lサイズ）</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>意気込み・連絡事項</th>
+                <td><textarea rows="3" cols="45" placeholder="例：友達3人で東京から行きます！泥だらけになって美肌になりたいです！"></textarea></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align:center; padding:10px;">
+                  <input type="submit" value="　この内容で予約メールを送る（仮）　" style="font-weight:bold; padding:5px 15px;">
+                  <input type="reset" value="やり直す" style="padding:5px 10px;">
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+
+      <!-- ==================== 5. 連携大学（農教大学について） ==================== -->
+      <div id="page-univ" class="page-section">
+        <div class="content-box">
+          <div class="section-heading">■ 地域連携パートナー：私立「農教大学（のうきょうだいがく）」のご紹介</div>
+
+          <table class="retro-table">
+            <tr>
+              <th colspan="2" style="background:#003366;">学校法人瑞穂学園 私立 農教大学（Nokyo Women's University of Agriculture）</th>
+            </tr>
+            <tr>
+              <td style="width:180px; font-weight:bold; background:#EFEFEF;">所在地・キャンパス環境</td>
+              <td>
+                穂乃国県瑞穂郡奥穂村字学園台1-1<br>
+                美しい山々に四方を囲まれた自然豊かなキャンパスです。都会の喧騒から離れ、学生の<b>約9割がキャンパス内の学生寮（「若苗寮」「瑞穂寮」など）で共同生活</b>を送っています。
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold; background:#EFEFEF;">教育理念・カリキュラム</td>
+              <td>
+                「土に学び、泥に笑い、生命を育む女性リーダーの育成」を掲げる、全国でも珍しい農業・稲作特化型の4年制女子大学です。<br>
+                座学だけでなく、春から夏にかけての「田植え実践」や地域伝統農事への参加が<b>卒業必修単位（2単位）</b>として組み込まれています。
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold; background:#EFEFEF;">名物「田植え実習服」の伝統と現在</td>
+              <td>
+                <ul>
+                  <li><b>【通常の実習スタイル（白Tシャツへそ出しルック）】</b><br>
+                  学内の浅い実習田では、袖に力強い筆文字で<b>「農教大」</b>とプリントされた緩いオーバーサイズの白Tシャツに、ジャージタイプのショートパンツが定番です。裾が泥につかないようお腹の横でシャツをキュッと結び、夏の猛暑に耐えるため広い首回りから水着やカラフルなキャミソールを覗かせる「農教大へそ出しスタイル」は、寮生たちの伝統ファッションとして親しまれています。</li>
+                  <li><b>【深田御田植祭での特別指定装束（指定スクール水着）】</b><br>
+                  一方、当保存会と連携して行う「泥かけ深田御田植祭」においては、膝下まで沈む深い泥田での安全性と伝統神事への敬意から、大学指定の<b>「濃紺・白パイピングのワンピース型スクール水着」</b>での参加が義務付けられています。</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold; background:#EFEFEF;">学生さんたちの声</td>
+              <td>
+                「最初は指定のスクール水着で泥に入るなんて恥ずかしいと思ったけど、始まったら全員3分で頭から泥パック状態になるので逆に吹っ切れて最高に楽しいです！単位も取れてお肌もツルツルになるので毎年参加しています！」（地域農学科2年・若苗寮生）
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <hr class="retro-hr">
+
+      <!-- 共通フッター -->
+      <div class="content-box" style="text-align:center; font-size:12px; color:#333333; padding-bottom:20px;">
+        Copyright (C) 2004-2005 奥穂村・深田御田植祭保存会（会長：田所源蔵） All Rights Reserved.<br>
+        〒999-0123 穂乃国県瑞穂郡奥穂村大字深田字神田1番地（奥穂神社社務所内）<br>
+        TEL/FAX：026X-XX-XXXX（昼間は田んぼに出ているため留守電になります）
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
