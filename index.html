@@ -1,4 +1,4 @@
-<!-- Output: html --><!-- Filename: 奥穂村_泥かけ深田御田植祭公式ホームページ_完全版 -->
+<!-- Output: html --><!-- Filename: 奥穂村_泥かけ深田御田植祭公式ホームページ_画像アップロード対応完全版 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -26,7 +26,7 @@
     border-collapse: collapse;
   }
   .sidebar {
-    width: 215px;
+    width: 220px;
     background-color: #CCFFCC;
     border-right: 4px ridge #99CC99;
     vertical-align: top;
@@ -94,7 +94,7 @@
     border-collapse: separate;
     border-spacing: 2px;
     width: 100%;
-    max-width: 780px;
+    max-width: 790px;
     margin: 10px auto;
   }
   .retro-table th {
@@ -118,11 +118,11 @@
     font-size: 16px;
     font-weight: bold;
     color: #660000;
-    max-width: 760px;
+    max-width: 770px;
     margin: 20px auto 10px auto;
   }
   .content-box {
-    max-width: 780px;
+    max-width: 790px;
     margin: 0 auto;
     line-height: 1.6;
   }
@@ -141,7 +141,7 @@
     border: 3px ridge #66AA66;
     padding: 10px;
     margin: 10px auto;
-    max-width: 760px;
+    max-width: 770px;
     font-size: 13px;
     line-height: 1.9;
   }
@@ -185,59 +185,71 @@
     font-weight: bold;
   }
 
-  /* 横画像 3:2 (幅210px : 高さ140px) */
-  .photo-frame-3x2 {
-    width: 210px;
-    height: 140px;
-    aspect-ratio: 3 / 2;
-    background: linear-gradient(180deg, #CFE8FF 0%, #CFE8FF 32%, #6B8E23 32%, #556B2F 48%, #5C4033 48%, #3E2723 100%);
+  /* ===== 画像スロット共通（実画像imgタグ＋未配置時のプレースホルダー＋クリック差し替え機能） ===== */
+  .photo-slot {
+    position: relative;
     border: 3px inset #888888;
     margin: 0 auto 6px auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: linear-gradient(180deg, #CFE8FF 0%, #CFE8FF 30%, #6B8E23 30%, #556B2F 46%, #5C4033 46%, #3E2723 100%);
     box-sizing: border-box;
-    color: #FFFFFF;
-    text-shadow: 1px 1px 2px #000000, -1px -1px 2px #000000;
-    font-size: 11px;
-    position: relative;
   }
-  /* 横画像 3:2 大サイズ（私たちについて 集合・業務写真用 幅330px : 高さ220px） */
-  .photo-frame-3x2-lg {
+  .photo-slot:hover {
+    outline: 3px solid #FF6600;
+  }
+  /* 横 3:2 通常サイズ (210x140) */
+  .slot-3x2 {
+    width: 216px;
+    height: 144px;
+    aspect-ratio: 3 / 2;
+  }
+  /* 横 3:2 大サイズ (330x220) */
+  .slot-3x2-lg {
     width: 330px;
     height: 220px;
     aspect-ratio: 3 / 2;
-    background: linear-gradient(180deg, #CFE8FF 0%, #CFE8FF 30%, #6B8E23 30%, #556B2F 46%, #5C4033 46%, #3E2723 100%);
-    border: 3px inset #888888;
-    margin: 0 auto 6px auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 8px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    text-shadow: 1px 1px 2px #000000, -1px -1px 2px #000000;
-    font-size: 12px;
-    position: relative;
   }
-  /* 縦画像 2:3 (幅140px : 高さ210px) */
-  .photo-frame-2x3 {
-    width: 140px;
-    height: 210px;
+  /* 縦 2:3 サイズ (144x216) */
+  .slot-2x3 {
+    width: 144px;
+    height: 216px;
     aspect-ratio: 2 / 3;
-    background: linear-gradient(180deg, #CFE8FF 0%, #CFE8FF 25%, #6B8E23 25%, #556B2F 40%, #5C4033 40%, #3E2723 100%);
-    border: 3px inset #888888;
-    margin: 0 auto 6px auto;
+  }
+  /* 会長トップ用 (150x150) */
+  .slot-sq {
+    width: 150px;
+    height: 150px;
+  }
+
+  /* 実画像タグ */
+  .photo-slot img.real-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+  /* 画像ファイルがまだフォルダに無い時に表示される案内レイヤー */
+  .slot-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 6px;
+    padding: 5px;
     box-sizing: border-box;
     color: #FFFFFF;
     text-shadow: 1px 1px 2px #000000, -1px -1px 2px #000000;
     font-size: 11px;
-    position: relative;
+    text-align: center;
+    z-index: 1;
   }
   .cam-stamp {
     font-family: "Courier New", monospace;
@@ -246,9 +258,14 @@
     font-size: 10px;
     text-align: right;
     text-shadow: 1px 1px 0px #000;
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    z-index: 3;
+    pointer-events: none;
   }
   .ratio-badge {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.7);
     color: #FFFF00;
     font-size: 10px;
     padding: 1px 4px;
@@ -256,6 +273,17 @@
     align-self: flex-start;
     border: 1px solid #FFFF00;
   }
+  .upload-hint {
+    background-color: rgba(255, 255, 0, 0.88);
+    color: #CC0000;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 2px 4px;
+    border: 1px solid #CC0000;
+    text-shadow: none;
+    margin-top: 2px;
+  }
+
   .photo-caption {
     font-size: 12px;
     color: #222222;
@@ -264,19 +292,6 @@
     background-color: #FFFFEE;
     border: 1px solid #DDDDAA;
     padding: 5px;
-  }
-  .photo-placeholder {
-    background-color: #DDDDDD;
-    border: 2px inset #999999;
-    width: 150px;
-    height: 130px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 12px;
-    color: #333333;
-    padding: 8px;
-    box-sizing: border-box;
   }
   .page-section {
     display: none;
@@ -303,9 +318,21 @@
     text-align: center;
     margin: 15px auto;
   }
+  .guide-banner {
+    background-color: #E6F7FF;
+    border: 2px dashed #0066CC;
+    padding: 8px 12px;
+    margin: 10px auto;
+    max-width: 770px;
+    font-size: 12px;
+    color: #003366;
+  }
 </style>
 </head>
 <body>
+
+<!-- 画面上からどの写真枠でも直接画像を差し替えできる隠しファイル入力 -->
+<input type="file" id="global-photo-uploader" accept="image/*" style="display:none;">
 
 <table class="layout-table">
   <tr>
@@ -335,18 +362,17 @@
 
       <hr class="retro-hr">
 
+      <div style="font-size:11px; background:#FFF8DC; border:2px solid #CC6600; padding:6px;">
+        <b style="color:#CC0000;">💡【画像の入れ方・2通り】</b><br>
+        <b>① 簡単クリック挿入：</b><br>
+        画面上の各写真枠をクリックすると、PC内の好きな画像（名前不問）をその場でハメ込めます！<br><br>
+        <b>② フォルダ配置：</b><br>
+        このHTMLと同じフォルダに枠内のファイル名（例：`DSCN6011.JPG`）で画像を置くと自動表示されます。
+      </div>
+
+      <hr class="retro-hr">
+
       <div style="text-align:center; font-size:11px;">
-        <div style="border:1px solid #000; background:#FFF; padding:3px; margin-bottom:5px;">
-          <b>奥穂村役場 観光課</b><br>
-          （バナー準備中）
-        </div>
-        <div style="border:1px solid #000; background:#FFF; padding:3px; margin-bottom:5px;">
-          <b>私立 農教大学</b><br>
-          ～緑と大地の女子教育～
-        </div>
-        <br>
-        ※当サイトはリンクフリーです。<br>
-        相互リンクご希望の方はメールにて！<br><br>
         推奨環境：Internet Explorer 6.0以上<br>
         画面サイズ：800×600
       </div>
@@ -364,12 +390,19 @@
         </div>
 
         <div class="marquee-box">
-          <marquee scrollamount="5">★★★ 「私たちについて（保存会農家3名＆農教大OGサポートスタッフ紹介・募集）」ページを新設しました！2026年度（令和8年）5月の深田御田植祭・全10日程の写真館も公開中！！ ★★★</marquee>
+          <marquee scrollamount="5">★★★ 泥の深さは「膝上（太ももまで沈む65cm）」！男性は外から泥を投げて喝を入れ、女性は指定スクール水着で田植えを行う伝統神事！2026年5月の写真館＆スタッフ紹介を公開中！！ ★★★</marquee>
         </div>
 
         <div style="text-align:center; margin:10px 0;">
           あなたは <span class="counter-box">084921</span> 人目の泥んこ参拝者です！<br>
           <span style="font-size:11px; color:#666666;">（※キリ番85000番を踏まれた方には奥穂村特産「神田米2kg」を進呈！自己申告制です）</span>
+        </div>
+
+        <div class="guide-banner">
+          <b>📸 【サイト制作者用ガイド：画像のアップロード方法】</b><br>
+          ・<b>方法A（クリックで即アップロード）：</b> ページ内の<b>どの写真枠でもクリックするとファイル選択ウィンドウが開きます</b>。生成した画像を選ぶだけでそのまま枠に表示されます（ブラウザに自動保存されるためリロードしても消えません）。<br>
+          ・<b>方法B（ファイル名で同じフォルダに格納）：</b> このHTMLファイルと同じフォルダに、各枠に書かれたファイル名（例：`DSCN6011.JPG`、`DSCN0021.JPG` など）で画像を置くと自動で読み込まれます。
+          <button onclick="clearSavedPhotos()" style="font-size:11px; margin-left:10px; cursor:pointer;">※クリック登録した画像を初期状態に戻す</button>
         </div>
       </div>
 
@@ -379,11 +412,10 @@
       <div id="page-top" class="page-section active">
         <div class="content-box">
           <div style="text-align:center; background:#FFEEEE; border:2px solid #FF0000; padding:8px; margin-bottom:15px;">
-            <b style="color:#FF0000; font-size:16px;">【重要なお知らせ】田植え祭りの参加衣装（指定服）の変更について</b><br>
-            以前は「緩い白Tシャツ（袖に農教大の筆文字・横結びのへそ出しルック）＋ショートパンツ」で実施しておりましたが、<br>
-            膝下まで浸かる深田（ふかだ）の泥でTシャツが重くなり危険なため、また神事本来の「肌で神田の泥を受け止める」意味から、<br>
-            <b>現在は一般参加者・学生ともに「大学・保存会指定のスクール水着（紺色・白パイピング）」の着用に完全統一</b>しております！<br>
-            <span style="font-size:12px; color:#333333;">（※なお、泥の中で指導を行う農教大卒業生の運営スタッフ2名のみ、識別のため特別ルールとして「指定スクール水着の上に農教大Tシャツを重ね着」して業務にあたっております）</span>
+            <b style="color:#FF0000; font-size:16px;">【重要なお知らせ】田植え祭りのルールと参加衣装（指定スクール水着）について</b><br>
+            当祭りは室町時代からの歴史に習い、<b>膝上（太もも）まで深く沈む泥田に入って田植えができるのは「女性のみ」</b>です。<br>
+            男性は田んぼの中には入らず、田んぼの周り（左右の畦道）から縁起の泥を投げて喝（かつ）を入れる役割となります。<br>
+            また、膝上まで泥に浸かり全身泥だらけになるため、参加女性は<b>「大学・保存会指定のスクール水着（濃紺・白T字パイピング）」の着用に完全統一</b>しております！（※農教大OGスタッフ2名のみ特別ルールとして指定水着の上に白Tシャツを着用します）
           </div>
 
           <div class="section-heading">■ 最新ニュース・更新履歴（What's New!）</div>
@@ -394,43 +426,51 @@
             <p style="margin:4px 0;"><b>2025/11/10</b> 無料ホームページスペースの容量制限（50MB）がいっぱいになってしまったため、<b>2005年～2022年までの過去写真ページを一時メンテナンス中（非公開）</b>とさせていただきました。2023年～2026年は全てご覧いただけます。</p>
             <p style="margin:4px 0;"><b>2025/06/01</b> 「活動記録（写真館）」に2025年5月の土日写真（全9日間・27枚）を追加しました。</p>
             <p style="margin:4px 0;"><b>2024/06/03</b> 「活動記録（写真館）」に2024年5月の土日写真（全8日間・24枚）を追加しました。</p>
-            <p style="margin:4px 0;"><b>2023/05/29</b> 指定スクール水着（白パイピング細紐タイプ）に全面変更となった2023年5月の写真館を公開しました。</p>
+            <p style="margin:4px 0;"><b>2023/05/29</b> 指定スクール水着（白T字パイピング細紐タイプ）に全面変更となった2023年5月の写真館を公開しました。</p>
             <p style="margin:4px 0;"><b>2005/04/01</b> 奥穂村・深田御田植祭保存会ホームページを開設しました。</p>
           </div>
 
           <div class="section-heading">■ 会長からのご挨拶と祭りのご紹介</div>
           <table class="retro-table">
             <tr>
-              <td style="width:160px; text-align:center; background:#F0F0F0;">
-                <div class="photo-placeholder">
-                  [画像: DSCN0001.JPG]<br><br>
-                  保存会会長<br>田所 源蔵（66）<br>（コンデジ片手に神田にて）
+              <td style="width:170px; text-align:center; background:#F0F0F0;">
+                <div class="photo-slot slot-sq" onclick="triggerUpload('DSCN0001.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0001.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0001.JPG" src="DSCN0001.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">DSCN0001.JPG</span>
+                    <div>
+                      <b>保存会会長</b><br>
+                      田所 源蔵（66）<br>
+                      <span class="upload-hint">📁クリックで画像選択</span>
+                    </div>
+                    <span></span>
+                  </div>
                 </div>
               </td>
               <td>
                 全国の皆様、こんにちは。奥穂村で代々米農家を受け継いでおります、保存会会長の田所（66歳）です。<br>
-                私どもの「泥かけ深田御田植祭」は、毎年5月の毎週土曜日・日曜日に開催される豊作祈願の伝統神事です。普通の田んぼよりもはるかに深い<b>「膝下までズブズブと沈む深田（ふかだ）」</b>に入り、どんな困難にも負けず奥深くまで苗を植えることで、山の神様に感謝を捧げます。<br><br>
-                田植え中の女性たちに、周囲の男衆が縁起担ぎとして優しく泥をかけてあげる習わしがあり、この奥穂の泥が<b>「お肌を活性化させて高級泥パック以上に美肌になる！」</b>と、地元の私立農教大学の女子学生さんや若い女性観光客の皆様に大人気となっております。<br>
-                運営は私ども地元の高齢農家3名と、頼もしい農教大卒業生の若手女性スタッフ2名の計5名でアットホームに行っております。ぜひ「私たちについて」や「活動記録（写真館）」もご覧ください！
+                私どもの「泥かけ深田御田植祭」は、毎年5月の毎週土曜日・日曜日に開催される豊作祈願の伝統神事です。普通の田んぼよりもはるかに深い<b>「膝上（太もも）までズブズブと沈む深田（ふかだ・深さ65cm）」</b>に女性たちだけが入って奥深くまで苗を植え、男性たちは田んぼの周り（両サイドの畦道）から縁起の泥を投げて喝を入れる、熱気あふれるお祭りです。<br><br>
+                両サイドから飛んでくる奥穂の泥で全員が頭から全身泥だらけになりますが、この泥が<b>「お肌を活性化させて高級泥パック以上に美肌になる！」</b>と、地元の私立農教大学の女子学生さんや若い女性観光客の皆様に大人気となっております。<br>
+                運営は私ども地元の高齢農家3名（畦道担当）と、頼もしい農教大卒業生の若手女性スタッフ2名（泥の中での指導担当）の計5名で行っております！
               </td>
             </tr>
           </table>
         </div>
       </div>
 
-      <!-- ==================== 2. 私たちについて（新規追加ページ） ==================== -->
+      <!-- ==================== 2. 私たちについて ==================== -->
       <div id="page-about" class="page-section">
         <div class="content-box">
           <div class="section-heading">■ 私たちについて（深田御田植祭保存会・運営メンバー紹介）</div>
           <p>
-            「泥かけ深田御田植祭」は、奥穂村で長年米作りを続けてきた<b>地元のベテラン農家（男性高齢者）3名</b>と、学生時代にこの祭りで泥だらけになって単位を取得した<b>私立農教大学の卒業生（OG）スタッフ2名</b>の計5名で運営しております。<br>
-            それぞれの役割分担で、参加者の皆様が安全に楽しく、全身泥パックになって笑顔で田植えができるようサポートいたします！
+            「泥かけ深田御田植祭」は、田んぼの外（畦道）から運営を支える<b>地元のベテラン農家（男性高齢者）3名</b>と、実際に膝上まで深い泥田の中に入って指導する<b>私立農教大学の卒業生（OG）スタッフ2名</b>の計5名で運営しております。<br>
+            <span style="color:#CC0000; font-weight:bold;">※各写真枠をクリックすると、生成したポートレート画像や集合写真をその場でアップロードして表示できます！</span>
           </p>
 
           <!-- ① 保存会・農家メンバー（高齢者3名） -->
-          <div class="section-heading">◆ 保存会・農家メンバー（3名） ～受付・記録撮影・泥かけ補佐・苗管理担当～</div>
+          <div class="section-heading">◆ 保存会・農家メンバー（3名） ～畦道での受付・記録撮影・泥投げ喝入れ・苗管理担当～</div>
           <p style="font-size:13px; margin:5px 0;">
-            ※私たち農家3名は、当日の<b>「受付・指定水着の貸出」「田植えの様子のコンデジ写真撮影」「縁起の泥かけの補佐」「植えるための若苗の用意や神田の水深・泥管理」</b>を担当しています。ポートレート写真は全員2:3の縦サイズで撮影しました。
+            ※祭りのしきたりにより男性は田んぼの中には入りません。私たち農家3名は田んぼの周り（畦道）から<b>「受付・指定水着の貸出」「田植えの様子のコンデジ写真撮影」「周りからの泥投げ（喝入れ）の補佐」「植えるための苗の用意や管理」</b>を担当しています。
           </p>
 
           <table class="retro-table">
@@ -441,141 +481,156 @@
             <!-- 農家1：田所 源蔵 -->
             <tr>
               <td style="text-align:center; background:#F8F8F8;">
-                <div class="photo-frame-2x3">
-                  <span class="ratio-badge">縦 2:3 (400×600)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0011.JPG]</b><br><br>
-                    <b>田所 源蔵（66歳）</b><br>
-                    首からコンデジを下げ<br>
-                    麦わら帽子と作業着姿で<br>
-                    神田の前に立つ縦写真
+                <div class="photo-slot slot-2x3" onclick="triggerUpload('DSCN0011.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0011.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0011.JPG" src="DSCN0011.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">縦 2:3</span>
+                    <div>
+                      <b>[DSCN0011.JPG]</b><br>
+                      <b>田所 源蔵（66歳）</b><br>
+                      麦わら帽子＋作業ベスト<br>
+                      首からコンデジ<br>
+                      <span class="upload-hint">📁クリックで画像選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 04 28</div>
                 </div>
-                <span style="font-size:11px; font-weight:bold;">田所 源蔵（66歳）</span>
+                <span style="font-size:11px; font-weight:bold;">ファイル名: DSCN0011.JPG</span>
               </td>
               <td>
                 <b style="font-size:15px; color:#006600;">【保存会 会長】 田所 源蔵（たどころ げんぞう・66歳）</b><br>
-                <b>● 主な担当：</b> 全体統括、<b>田植えの様子の写真撮影（コンデジ担当）</b>、ホームページ管理、総合受付<br>
-                <b>● 稲作歴：</b> 48年（奥穂村・深田地区生まれ）<br>
+                <b>● 主な担当：</b> 全体統括、<b>畦道からの田植え写真撮影（コンデジ担当）</b>、ホームページ管理、総合受付<br>
+                <b>● 服装：</b> 年季の入った麦わら帽子、赤紺チェックシャツの上にベージュの多機能作業ベスト<br>
                 <b>● プロフィール＆一言：</b><br>
-                当保存会の会長を務めております。開催日はいつも愛用のコンパクトデジカメ（Canon製）を首から下げ、畦道から皆様の泥んこ笑顔や、深田に足を取られて転んでしまった決定的瞬間を撮影しております。カメラの難しいフィルター設定などは分かりませんので、太陽の下の元気な姿をそのまま「写真館」にアップしています。カメラを向けたらぜひ泥だらけの笑顔でピースしてください！
+                当保存会の会長を務めております。開催日はいつも愛用のコンパクトデジカメを首から下げ、田んぼの外の畦道から皆様の泥んこ笑顔や、膝上まである深い泥に足を取られて転んでしまった決定的瞬間を撮影しております。背景までくっきり写るデジカメで、フィルター無しでそのまま「写真館」に載せております！
               </td>
             </tr>
             <!-- 農家2：熊谷 権造 -->
             <tr>
               <td style="text-align:center; background:#F8F8F8;">
-                <div class="photo-frame-2x3">
-                  <span class="ratio-badge">縦 2:3 (400×600)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0012.JPG]</b><br><br>
-                    <b>熊谷 権造（71歳）</b><br>
-                    手ぬぐい鉢巻に長靴姿で<br>
-                    木桶に入ったトロトロの<br>
-                    美肌泥を持つ縦写真
+                <div class="photo-slot slot-2x3" onclick="triggerUpload('DSCN0012.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0012.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0012.JPG" src="DSCN0012.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">縦 2:3</span>
+                    <div>
+                      <b>[DSCN0012.JPG]</b><br>
+                      <b>熊谷 権造（71歳）</b><br>
+                      白タオル鉢巻＋<br>
+                      紺白ギンガム作業シャツ<br>
+                      <span class="upload-hint">📁クリックで画像選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 04 28</div>
                 </div>
-                <span style="font-size:11px; font-weight:bold;">熊谷 権造（71歳）</span>
+                <span style="font-size:11px; font-weight:bold;">ファイル名: DSCN0012.JPG</span>
               </td>
               <td>
                 <b style="font-size:15px; color:#006600;">【保存会 副会長・泥守】 熊谷 権造（くまがい ごんぞう・71歳）</b><br>
-                <b>● 主な担当：</b> <b>縁起の泥かけ補佐</b>、神田の泥質・水深（膝下45cm）調整、美肌泥の熟成管理<br>
-                <b>● 稲作歴：</b> 53年（奥穂神社・筆頭氏子総代）<br>
+                <b>● 主な担当：</b> <b>田んぼの周りからの泥投げ（喝入れ）補佐</b>、神田の泥質・膝上水深（65cm）管理<br>
+                <b>● 服装：</b> 白いタオル鉢巻、年季の入った紺×白ギンガムチェック半袖作業シャツ<br>
                 <b>● プロフィール＆一言：</b><br>
-                神田の泥を誰よりも知り尽くす「泥守（どろもり）」です。参加者の皆さんが膝下まで気持ちよく沈めるよう、春先から小石一つないトロトロの美肌泥に仕上げています。当日は畦道から男性陣と一緒に、田植え中の女性たちの肩や背中へ「今年も豊作だぞー！別嬪（べっぴん）さんになれよー！」と縁起の泥を優しくかけて回る補佐をしています。
+                神田の泥を誰よりも知り尽くす「泥守（どろもり）」です。参加女性の皆さんが膝上（太もも）までしっかり沈むよう、小石一つないトロトロの美肌泥に仕上げています。当日は田んぼの外（両サイドの畦道）から男性陣をリードして、「どんな困難にも負けるな！豊作だぞー！」と縁起の泥を投げて喝を入れる役目を担っています。
               </td>
             </tr>
             <!-- 農家3：松原 留吉 -->
             <tr>
               <td style="text-align:center; background:#F8F8F8;">
-                <div class="photo-frame-2x3">
-                  <span class="ratio-badge">縦 2:3 (400×600)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0013.JPG]</b><br><br>
-                    <b>松原 留吉（68歳）</b><br>
-                    青々とした神田米の<br>
-                    若苗の束を両手に抱えて<br>
-                    微笑む縦写真
+                <div class="photo-slot slot-2x3" onclick="triggerUpload('DSCN0013.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0013.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0013.JPG" src="DSCN0013.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">縦 2:3</span>
+                    <div>
+                      <b>[DSCN0013.JPG]</b><br>
+                      <b>松原 留吉（68歳）</b><br>
+                      白髪短髪・日焼け顔<br>
+                      袖まくり白作業シャツ<br>
+                      <span class="upload-hint">📁クリックで画像選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 04 28</div>
                 </div>
-                <span style="font-size:11px; font-weight:bold;">松原 留吉（68歳）</span>
+                <span style="font-size:11px; font-weight:bold;">ファイル名: DSCN0013.JPG</span>
               </td>
               <td>
                 <b style="font-size:15px; color:#006600;">【保存会 会計・苗師】 松原 留吉（まつばら とめきち・68歳）</b><br>
-                <b>● 主な担当：</b> <b>植えるための苗の用意・管理・受け渡し</b>、当日の受付・指定スクール水着の貸出管理、温水シャワー設備点検<br>
-                <b>● 稲作歴：</b> 50年（農教大学・学外実習特別協力農家）<br>
+                <b>● 主な担当：</b> <b>植えるための苗の用意・管理・畦道からの受け渡し</b>、当日の受付・指定スクール水着の貸出管理<br>
+                <b>● 服装：</b> 袖口を折り返した年季の入った白ボタンダウン作業シャツ、グレーの作業ズボン（黒ベルト）<br>
                 <b>● プロフィール＆一言：</b><br>
-                お祭りで皆さんが深田の奥深くへ植えるための「神田米（しんでんまい）の若苗」を育苗ハウスで大切に育てて用意しています。当日は受付テントでの指定スクール水着のお渡しや、田植え中に苗が足りなくなった方へ畦道から新しい苗束を補充する係を担当しています。田植えの後の温かい豚汁とおにぎりも私が用意して待っていますよ！
+                お祭りで皆さんが深田の奥深くへ植えるための「神田米の若苗」を育苗ハウスで大切に育てて用意しています。当日は受付での指定スクール水着のお渡しや、田んぼの周り（畦道）から泥の中の女性たちへ新しい苗束を手渡す係を担当しています！
               </td>
             </tr>
           </table>
 
           <!-- ② 実技サポートスタッフ（農教大卒業生・2名） -->
-          <div class="section-heading">◆ 実技サポートスタッフ（私立農教大学 卒業生・2名） ～泥中での田植えレクチャー担当～</div>
+          <div class="section-heading">◆ 実技サポートスタッフ（私立農教大学 卒業生・2名） ～膝上の泥に入りながら田植えレクチャー担当～</div>
           <div style="background:#EEF7FF; border:2px solid #336699; padding:10px; margin:10px 0; font-size:13px;">
             <b>【スタッフの服装（特別ルール）について】</b><br>
-            スタッフの2名は、参加者と一緒に膝下まで深い泥田（深田）に入りながら、田植えのやり方のレクチャーや、足を取られて転んだ方のサポートを行います。<br>
-            一般参加者や現役学生と一目で区別がつくよう、また運営スタッフとしての特別ルールとして、<b>「指定のスクール水着（濃紺・白パイピング）の上に、農教大学の白Tシャツ（袖に筆文字で『農教大』・裾が泥に浸からないようお腹の横で結んだへそ出しスタイル）を重ね着して参加すること」</b>が特別に許可されています。<br>
-            首回りが緩いオーバーサイズTシャツの襟元や肩から、中に着た指定スクール水着の白い肩紐や胸元の水平な白パイピングが覗く、農教大の伝統と現在を合わせた頼もしいユニフォーム姿で皆様をサポートします！
+            祭りで田植えができるのは歴史に習い<b>「女性のみ」</b>です。農教大卒業生スタッフの2名は、参加者と一緒に<b>膝上まである深い泥田</b>に入り、両サイドから飛んでくる泥を全身に浴びながら田植えのレクチャーやサポートを行います。<br>
+            一般参加女性は「指定のスクール水着のみ」を着用しますが、スタッフの2名だけは特別ルールとして<b>「指定のスクール水着（濃紺・白T字パイピング）の上に、通常サイズより大きい白いTシャツ（袖に『農教大』・横結び）を着ること」</b>が許されています。
           </div>
 
           <table class="retro-table">
             <tr>
-              <th style="width:165px; background:#006699;">ポートレート（縦 2:3）</th>
+              <th style="width:165px; background:#006699;">全身ポートレート（縦 2:3）</th>
               <th style="background:#006699;">プロフィール・担当業務・ご挨拶</th>
             </tr>
             <!-- スタッフ1：早乙女 結衣（26歳） -->
             <tr>
               <td style="text-align:center; background:#F8F8F8;">
-                <div class="photo-frame-2x3">
-                  <span class="ratio-badge">縦 2:3 (400×600)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0021.JPG]</b><br><br>
-                    <b>早乙女 結衣（26歳）</b><br>
-                    指定スク水の上に<br>
-                    袖「農教大」白Tシャツを<br>
-                    横結びで重ね着した<br>
-                    泥田での縦ポートレート
+                <div class="photo-slot slot-2x3" onclick="triggerUpload('DSCN0021.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0021.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0021.JPG" src="DSCN0021.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">縦 2:3</span>
+                    <div>
+                      <b>[DSCN0021.JPG]</b><br>
+                      <b>早乙女 結衣（26歳）</b><br>
+                      栗色ショートボブ<br>
+                      指定スク水＋大きめ白T<br>
+                      <span class="upload-hint">📁クリックで画像選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 05 02</div>
                 </div>
-                <span style="font-size:11px; font-weight:bold;">早乙女 結衣（26歳）</span>
+                <span style="font-size:11px; font-weight:bold;">ファイル名: DSCN0021.JPG</span>
               </td>
               <td>
                 <b style="font-size:15px; color:#003399;">【チーフサポートスタッフ】 早乙女 結衣（さおとめ ゆい・26歳）</b><br>
                 <b>● 出身：</b> 私立 農教大学 農学部 地域農学科 卒業（第18期生・元「若苗寮」寮長）<br>
-                <b>● 主な担当：</b> <b>深田の泥に入りながらの田植え実技レクチャー</b>、3人横一列フォーメーション指導、初心者の転倒救出サポート<br>
-                <b>● 着用衣装：</b> 指定スクール水着（濃紺・白T字パイピング）＋ 農教大オーバーサイズ白Tシャツ（横結び）<br>
+                <b>● 特徴・服装：</b> 栗色のショートボブ。<b>指定スクール水着（濃紺・白T字パイピング）の上に、通常より大きい白Tシャツ（横結び）を着用</b><br>
                 <b>● プロフィール＆一言：</b><br>
-                大学時代、4年間毎年この「泥かけ深田御田植祭」に参加し、卒業後も奥穂村の農業公社に就職してスタッフを続けています！深田は膝下までズブズブ沈むので最初はびっくりしますが、私がすぐ隣で一緒に泥に入りながら「前かがみでの苗の持ち方」「泥の奥深くまで差し込むコツ」を丁寧にお教えします。私も毎年皆さんと一緒に頭から泥だらけになって楽しんでいますので、何でも気軽に声をかけてくださいね！
+                大学時代から毎年この深田に入り続けている26歳です！お祭りの田んぼは<b>膝上（太もも）までズブズブ沈む</b>ので最初は驚きますが、私がすぐ隣で一緒に泥に入りながら、前かがみで奥深くまで苗を植えるコツをレクチャーします。周りのおじさんたちから両サイドから泥が飛んできて、私の白Tシャツも中のスク水もすぐ全身泥パック状態になりますが、一緒に笑って頑張りましょう！
               </td>
             </tr>
             <!-- スタッフ2：水瀬 葵（24歳） -->
             <tr>
               <td style="text-align:center; background:#F8F8F8;">
-                <div class="photo-frame-2x3">
-                  <span class="ratio-badge">縦 2:3 (400×600)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0022.JPG]</b><br><br>
-                    <b>水瀬 葵（24歳）</b><br>
-                    指定スク水＋白Tシャツ<br>
-                    （首元から白肩紐が覗く）<br>
-                    頬に泥をつけた笑顔の<br>
-                    縦ポートレート
+                <div class="photo-slot slot-2x3" onclick="triggerUpload('DSCN0022.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0022.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0022.JPG" src="DSCN0022.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">縦 2:3</span>
+                    <div>
+                      <b>[DSCN0022.JPG]</b><br>
+                      <b>水瀬 葵（24歳）</b><br>
+                      黒髪ローポニーテール<br>
+                      指定スク水＋大きめ白T<br>
+                      <span class="upload-hint">📁クリックで画像選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 05 02</div>
                 </div>
-                <span style="font-size:11px; font-weight:bold;">水瀬 葵（24歳）</span>
+                <span style="font-size:11px; font-weight:bold;">ファイル名: DSCN0022.JPG</span>
               </td>
               <td>
                 <b style="font-size:15px; color:#003399;">【フィールドサポートスタッフ】 水瀬 葵（みなせ あおい・24歳）</b><br>
                 <b>● 出身：</b> 私立 農教大学 農学部 地域農学科 卒業（第20期生・元「瑞穂寮」所属）<br>
-                <b>● 主な担当：</b> <b>泥の中での田植えサポート・姿勢レクチャー</b>、美肌泥パックの馴染ませ方ガイド、学生・女性観光客の誘導<br>
-                <b>● 着用衣装：</b> 指定スクール水着（濃紺・白T字パイピング）＋ 農教大オーバーサイズ白Tシャツ（横結び）<br>
+                <b>● 特徴・服装：</b> 黒髪のローポニーテール（センター分けサイドバング）。<b>指定スクール水着の上に、通常より大きい白Tシャツ（横結び）を着用</b><br>
                 <b>● プロフィール＆一言：</b><br>
-                一昨年に農教大を卒業したばかりの24歳です！在学中にこの神田の泥パック効果にハマり、今では週末スタッフとして泥田の中で後輩たちや観光客の皆さんのサポートをしています。スタッフ特別ルールで指定スク水の上に懐かしい「農教大」の筆文字Tシャツを着ていますが、作業が始まれば結局Tシャツも中の水着も関係なく全身ドロドロになります（笑）。泥に転んでしまってもすぐ手を貸しますので、思いっきりドロドロになって美肌になりましょう！
+                農教大を卒業したばかりの24歳です！スタッフ特別ルールで指定スクール水着の上に大きめの白Tシャツを着て、膝上まである深い泥田の中で皆さんをサポートしています。田植え中は両サイドの畦道から喝を入れる泥がバンバン飛んでくるので、転んでしまった方にはすぐ手を貸して引き起こします。全身ドロドロになって最高の美肌を手に入れましょう！
               </td>
             </tr>
           </table>
@@ -583,7 +638,7 @@
           <!-- ③ 3:2のスタッフ集合写真・業務の様子（4枚） -->
           <div class="section-heading">◆ スタッフ集合写真＆当日の業務の様子（横 3:2 写真×4枚）</div>
           <p style="font-size:13px; margin:5px 0;">
-            開催当日の朝礼や、実際に私たちが受付・苗渡し・泥の中での田植えレクチャーを行っている業務風景です（すべて横3:2比率・コンデジ無加工）。
+            ※男性（農家3名）は全員田んぼの外（畦道）、女性（スタッフ2名・参加者）は膝上まで深い泥田の中に入り、両サイドから泥が飛んでくる中での業務風景です。枠をクリックすると画像を挿入できます。
           </p>
 
           <table class="retro-table">
@@ -591,71 +646,95 @@
               <!-- 業務写真1（横3:2） -->
               <td style="width:50%; text-align:center;">
                 <div style="font-weight:bold; font-size:13px; color:#005500; margin-bottom:4px;">① 運営メンバー5名 全員集合写真（比率 3:2）</div>
-                <div class="photo-frame-3x2-lg">
-                  <span class="ratio-badge">横 3:2 (600×400)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0031.JPG]</b><br>
-                    神田の前で並ぶ農家3名（田所66歳・熊谷71歳・松原68歳）と<br>
-                    指定スク水＋農教大白Tシャツ姿のOGスタッフ2名（結衣26歳・葵24歳）
+                <div class="photo-slot slot-3x2-lg" onclick="triggerUpload('DSCN0031.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0031.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0031.JPG" src="DSCN0031.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">横 3:2 (DSCN0031.JPG)</span>
+                    <div>
+                      <b>【ファイル名: DSCN0031.JPG】</b><br>
+                      外の乾いた畦道に立つ農家3名と、<br>
+                      手前の「膝上まで深い泥田」に立つ<br>
+                      全身泥だらけのOGスタッフ2名（結衣・葵）<br>
+                      <span class="upload-hint">📁ここをクリックして画像を選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 05 02</div>
                 </div>
                 <div class="photo-caption">
-                  <b>【朝9時・神田前でのスタッフ集合写真】</b><br>
-                  作業着・長靴姿の農家3名と、指定スクール水着の上に袖「農教大」の白Tシャツをお腹の横で結んで着用した卒業生スタッフ2名（早乙女さん・水瀬さん）の5名全員集合カットです。セルフタイマーを畦道の三脚に置いて撮影しました。
+                  <b>【神田での運営メンバー5名集合写真（`DSCN0031.JPG`）】</b><br>
+                  後ろの乾いた畦道（田んぼの外）に立つ農家3名（熊谷71歳・田所66歳・松原68歳）と、手前の膝上まで深い泥田の中に立ち、指定スク水＋白Tシャツ姿で全身泥だらけになって笑うOGスタッフ2名（早乙女26歳・水瀬24歳）の記念写真です。
                 </div>
               </td>
               <!-- 業務写真2（横3:2） -->
               <td style="width:50%; text-align:center;">
                 <div style="font-weight:bold; font-size:13px; color:#005500; margin-bottom:4px;">② 泥に入りながらの田植えレクチャー業務（比率 3:2）</div>
-                <div class="photo-frame-3x2-lg">
-                  <span class="ratio-badge">横 3:2 (600×400)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0035.JPG]</b><br>
-                    膝下まで泥に浸かり、指定スク水姿の参加者3名の横で<br>
-                    前かがみの植え方を実演指導するスク水＋白T姿のスタッフ2名
+                <div class="photo-slot slot-3x2-lg" onclick="triggerUpload('DSCN0035.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0035.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0035.JPG" src="DSCN0035.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">横 3:2 (DSCN0035.JPG)</span>
+                    <div>
+                      <b>【ファイル名: DSCN0035.JPG】</b><br>
+                      膝上まで泥に埋まり、両サイドから泥が飛ぶ中、<br>
+                      指定スク水の参加女性に田植えを指導する<br>
+                      スク水＋白Tシャツ姿のスタッフ2名<br>
+                      <span class="upload-hint">📁ここをクリックして画像を選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 05 09</div>
                 </div>
                 <div class="photo-caption">
-                  <b>【深田の中での実技レクチャー・サポート風景】</b><br>
-                  早乙女さん（26歳）と水瀬さん（24歳）が、膝下まで深い泥田に参加者と一緒に入り、前かがみで奥深くまで苗を植えるコツを指導している様子です。緩い白Tシャツの首元から指定スク水の白い肩紐と水平ラインが見え、すでにシャツの結び目まで泥はねでいっぱいです。
+                  <b>【膝上の深田での実技レクチャー風景（`DSCN0035.JPG`）】</b><br>
+                  外の左右の畦道から男性たちが泥を投げて喝を入れる中、膝上（太もも）まで泥に浸かりながら、指定スク水姿の参加女性たちに前かがみでの植え方を指導する結衣さん（26歳）と葵さん（24歳）です。全員頭から全身泥だらけです。
                 </div>
               </td>
             </tr>
             <tr>
               <!-- 業務写真3（横3:2） -->
               <td style="width:50%; text-align:center;">
-                <div style="font-weight:bold; font-size:13px; color:#005500; margin-bottom:4px;">③ 受付・苗の用意とコンデジ撮影業務（比率 3:2）</div>
-                <div class="photo-frame-3x2-lg">
-                  <span class="ratio-badge">横 3:2 (600×400)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0038.JPG]</b><br>
-                    畦道で若苗の束を手渡す松原さん（68歳）と、<br>
-                    横でコンパクトデジカメを構えて撮影する田所会長（66歳）
+                <div style="font-weight:bold; font-size:13px; color:#005500; margin-bottom:4px;">③ 畦道からの苗渡し＆コンデジ撮影業務（比率 3:2）</div>
+                <div class="photo-slot slot-3x2-lg" onclick="triggerUpload('DSCN0038.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0038.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0038.JPG" src="DSCN0038.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">横 3:2 (DSCN0038.JPG)</span>
+                    <div>
+                      <b>【ファイル名: DSCN0038.JPG】</b><br>
+                      外の畦道から若苗を渡す松原（68）＆撮影する田所（66）と、<br>
+                      膝上まで泥に埋まって苗を受け取る<br>
+                      全身泥まみれの結衣（26）<br>
+                      <span class="upload-hint">📁ここをクリックして画像を選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 05 16</div>
                 </div>
                 <div class="photo-caption">
-                  <b>【苗の受け渡し管理＆記録写真撮影の様子】</b><br>
-                  松原さん（68歳）がハウスから運んできた新鮮な苗束を泥の中の参加者やスタッフへ手渡し、その横で会長の田所（66歳）がコンデジを構えて田植えの様子を撮影している業務風景です。受付での指定水着貸出もこのテントで行っています。
+                  <b>【畦道からの苗補充＆コンデジ撮影業務（`DSCN0038.JPG`）】</b><br>
+                  田んぼの外の畦道から松原さん（68歳）が新鮮な苗束を渡し、田所会長（66歳）がコンデジで撮影している様子です。受け取るスタッフの結衣さん（26歳）は膝上まで泥に埋まり、両サイドから飛んでくる泥で白Tシャツも水着もドロドロです。
                 </div>
               </td>
               <!-- 業務写真4（横3:2） -->
               <td style="width:50%; text-align:center;">
-                <div style="font-weight:bold; font-size:13px; color:#005500; margin-bottom:4px;">④ 縁起の泥かけ補佐＆転倒サポート業務（比率 3:2）</div>
-                <div class="photo-frame-3x2-lg">
-                  <span class="ratio-badge">横 3:2 (600×400)</span>
-                  <div style="margin:auto 0;">
-                    <b>[DSCN0044.JPG]</b><br>
-                    縁起の泥をかける熊谷さん（71歳）と、泥に尻もちをついた<br>
-                    参加者を笑顔で引き起こす泥だらけのOGスタッフ2名
+                <div style="font-weight:bold; font-size:13px; color:#005500; margin-bottom:4px;">④ 周りからの泥投げ喝入れ＆転倒救出業務（比率 3:2）</div>
+                <div class="photo-slot slot-3x2-lg" onclick="triggerUpload('DSCN0044.JPG')" title="クリックして画像を選択（または同じフォルダに DSCN0044.JPG を配置）">
+                  <img class="real-photo" id="img-DSCN0044.JPG" src="DSCN0044.JPG" onerror="this.style.display='none'">
+                  <div class="slot-fallback">
+                    <span class="ratio-badge">横 3:2 (DSCN0044.JPG)</span>
+                    <div>
+                      <b>【ファイル名: DSCN0044.JPG】</b><br>
+                      外の畦道から泥を投げる熊谷（71）と、<br>
+                      膝上の泥田で転倒した参加者を両脇から起こす<br>
+                      全身泥だらけのOGスタッフ2名<br>
+                      <span class="upload-hint">📁ここをクリックして画像を選択</span>
+                    </div>
+                    <span></span>
                   </div>
                   <div class="cam-stamp">'26 05 24</div>
                 </div>
                 <div class="photo-caption">
-                  <b>【泥かけ補佐と深田での転倒救出サポート】</b><br>
-                  熊谷さん（71歳）が畦道から美肌泥のかけ方をリードし、深い泥に足を取られて倒れてしまった参加者を、スタッフの結衣さんと葵さんが泥まみれになりながら笑顔で支え起こしている様子です。スタッフの白Tシャツも水着もすっかり泥パック状態になっています。
+                  <b>【周りからの泥投げ喝入れと深田での転倒サポート（`DSCN0044.JPG`）】</b><br>
+                  外の畦道から熊谷さん（71歳）たちが威勢よく泥を投げて喝を入れ、膝上まである深い泥に足を取られて尻もちをついた参加女性（指定スク水）を、スタッフの結衣さんと葵さんが全身ドロドロになりながら両脇から笑顔で引き起こしています。
                 </div>
               </td>
             </tr>
@@ -666,51 +745,31 @@
           <table class="retro-table">
             <tr>
               <th colspan="2" style="background:#CC3300; font-size:15px;">
-                ★ 泥に入りながら田植えを楽しくサポートしてくれる女性スタッフ（農教大OG・在学生・経験者歓迎）を募集しています！ ★
+                ★ 膝上まで深い泥田に入りながら田植えをサポートしてくれる女性スタッフ（農教大OG・在学生歓迎）を募集しています！ ★
               </th>
             </tr>
             <tr>
               <td style="width:180px; font-weight:bold; background:#FFF5EE;">募集職種・業務内容</td>
               <td>
-                <b>深田（ふかだ）フィールドサポートスタッフ（若干名）</b><br>
-                ・膝下まで浸かる深田に実際に入りながら、参加者（農教大の後輩や女性観光客）への田植え方法のレクチャー<br>
-                ・深い泥の中でバランスを崩したり転倒した参加者の手引き・サポート<br>
-                ・朝の苗出し補助、受付での指定スクール水着のサイズ案内補助
-              </td>
-            </tr>
-            <tr>
-              <td style="font-weight:bold; background:#FFF5EE;">応募資格</td>
-              <td>
-                ・<b>20歳以上の健康な女性</b>（私立農教大学の卒業生、または田植え祭りで単位を取得済みの農教大3・4年生の方を特に歓迎します！）<br>
-                ・全身泥だらけになることを厭わず、笑顔で明るく参加者を盛り上げてくださる方
+                <b>深田（ふかだ）フィールドサポートスタッフ（女性限定・若干名）</b><br>
+                ※祭りの伝統により田んぼの中に入れるのは女性のみのため、女性限定の募集となります。<br>
+                ・膝上（太もも）まで浸かる深田に実際に入り、両サイドから飛んでくる泥を浴びながらの田植えレクチャーおよび転倒者のサポート
               </td>
             </tr>
             <tr>
               <td style="font-weight:bold; background:#FFF5EE;">勤務時の服装規定<br>（スタッフ特別ルール）</td>
               <td>
-                ・保存会より<b>「大学指定のスクール水着（濃紺・白パイピング）」</b>と<b>「農教大スタッフ用オーバーサイズ白Tシャツ（袖に筆文字入り）」</b>を支給いたします。<br>
-                ・スタッフ特別ルールとして、<b>指定スクール水着の上に白Tシャツを着用（お腹の横で結ぶスタイル）</b>して泥田に入っていただきます。
+                ・保存会より<b>「大学指定のスクール水着（濃紺・白T字パイピング）」</b>と<b>「農教大スタッフ用オーバーサイズ白Tシャツ」</b>を支給します。<br>
+                ・スタッフのみ特別ルールとして、指定スクール水着の上に白いTシャツを着て参加することが許されています。
               </td>
             </tr>
             <tr>
               <td style="font-weight:bold; background:#FFF5EE;">勤務日・待遇・特典</td>
               <td>
-                ・<b>勤務日：</b> 毎年5月の土曜日・日曜日（週1日～OK！午前8時30分～午後1時30分頃まで）<br>
-                ・<b>日当（謝礼）：</b> 1日 8,000円（交通費別途支給）<br>
-                ・<b>特典：</b> 毎回美味しい「神田米おにぎり＆特製豚汁」の昼食付き！さらに年間を通して奥穂の美肌泥パックし放題＆秋の新米10kgを贈呈いたします！
-              </td>
-            </tr>
-            <tr>
-              <td style="font-weight:bold; background:#FFF5EE;">応募・お問い合わせ方法</td>
-              <td>
-                保存会会長・田所源蔵までお電話（026X-XX-XXXX）、または農教大学・学生課キャリア支援窓口（「深田御田植祭スタッフ募集係」）までお気軽にお申し込みください！<br>
-                <div style="margin-top:6px;">
-                  <button onclick="alert('【スタッフ応募窓口】\nご関心をお寄せいただきありがとうございます！\n保存会会長・田所、またはチーフスタッフ・早乙女より折り返しご連絡いたします。')" style="font-weight:bold; padding:5px 12px; cursor:pointer;">⇒ スタッフ応募・質問メールを送る（仮）</button>
-                </div>
+                ・<b>勤務日：</b> 毎年5月の土曜日・日曜日（日当 8,000円＋神田米おにぎり＆豚汁付き＋秋の新米10kg進呈）
               </td>
             </tr>
           </table>
-
         </div>
       </div>
 
@@ -721,21 +780,20 @@
 
           <table class="retro-table">
             <tr>
-              <th>１．室町時代から続く「困難への感謝」と深田の儀式</th>
+              <th>１．室町時代から続く「困難への感謝」と膝上まで沈む深田の儀式</th>
             </tr>
             <tr>
               <td>
-                奥穂村は四方を急峻な山々に囲まれ、湧き水が豊富な反面、田んぼの底が深くぬかるむ「深田（ふかだ）」が多い地域です。<br>
-                このお祭りは、実際の米を収穫する目的以上に<b>「神事・儀式とお祭り」</b>の意味合いが大きく、普通の田んぼよりも深い「膝下まで浸かる深田」へ入り、<b>「深いところで、奥深くまで苗を植えるという困難を再現し、どんな困難であっても神に感謝をして豊作を願う」</b>という尊い由来を持っています。
+                このお祭りは、実際の米を収穫する目的以上に<b>「神事・儀式とお祭り」</b>の意味合いが大きく、普通の田んぼよりもはるかに深い<b>「膝上（太もも・深さ65cm）まで浸かる深田」</b>へ入り、<b>「深いところで、奥深くまで苗を植えるという困難を再現し、どんな困難であっても神に感謝をして豊作を願う」</b>という尊い由来を持っています。
               </td>
             </tr>
             <tr>
-              <th>２．女性が田植えを行い、男性が縁起の泥をかけてあげる習わし</th>
+              <th>２．田植えができるのは「女性のみ」、男性は周りから泥を投げて喝を入れる</th>
             </tr>
             <tr>
               <td>
-                古くから神田に立ち入る早乙女（さおとめ）は女性の役目とされ、男性は田んぼの周りから<b>「縁起のために泥を田植え中の女性にかけてあげる」</b>ことで厄を払い、豊作を祈願します。<br>
-                泥を乱暴に投げつけるのではなく、深い泥の中で頑張る女性たちの肩や背中へ、ミネラルたっぷりの滑らかな泥を優しくかけてあげる温かいお祭りです。
+                歴史に習い、<b>神田（泥の中）に入って田植えができるのは「女性のみ」</b>と厳格に定められています。男性を田んぼの中に入れることはありません。<br>
+                男性は田んぼの周り（左右両サイドの畦道）に立ち、深い泥の中で田植えをする女性たちへ向かって<b>縁起のために泥を投げて喝（かつ）を入れる役割</b>を担います。両サイドから飛んでくる泥で女性たちは全身泥だらけになりますが、その泥が天然の美肌パックとして大人気となっています。
               </td>
             </tr>
             <tr>
@@ -744,21 +802,10 @@
             <tr>
               <td>
                 <ul>
-                  <li><b>【古代～明治初期：無衣での奉納】</b><br>
-                  かつては神の儀式のため、参加する女性は衣類を一切着用せずに深い神田へ入り、全身に神聖な泥を浴びていました。</li>
-                  <li><b>【中期の流行：農教大の白Tシャツ（へそ出し）＋ショートパンツ】</b><br>
-                  時代が下り、連携する農教大学の学生たちは、袖に筆文字で「農教大」と書かれた緩いオーバーサイズの白Tシャツのお腹部分を横で結んだ「へそ出しルック」に、ジャージのショートパンツ姿で参加していました（夏の猛暑に耐えるため首回りが緩く、中は水着のトップスやカップ付きキャミソール、かわいいアンダーウェア等を着用）。</li>
-                  <li><b>【現在の規定：大学・保存会指定のスクール水着へ完全移行（※スタッフのみシャツ重ね着）】</b><br>
-                  膝下まで沈む深田で転倒したり泥をかけられたりすると、Tシャツが泥だらけになって重みで伸びきってしまうため、現在は<b>「大学指定のスクール水着（濃紺・白パイピング・細ストラップのワンピース型）」</b>を着用することに正式変更されました。なお、泥の中で指導を行う農教大卒業生スタッフ2名のみ、識別用の特別ルールとして指定スクール水着の上に農教大Tシャツを重ね着しています。</li>
+                  <li><b>【古代～明治初期：無衣での奉納】</b> かつては神の儀式のため、参加する女性は衣類を着用せずに深い神田へ入っていました。</li>
+                  <li><b>【現在の規定：指定のスクール水着着用（※スタッフのみ白Tシャツ許可）】</b><br>
+                  現代においては、参加女性全員が<b>「大学・保存会指定のスクール水着（濃紺・白T字パイピング・細ストラップのワンピース型）」</b>を着用します。なお、泥の中でレクチャーを行う農教大OGスタッフ2名のみ、特別ルールとして指定スクール水着の上に白いTシャツを着ることが許されています。</li>
                 </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>４．泥パック以上の美肌効果で若い女性に大人気！</th>
-            </tr>
-            <tr>
-              <td>
-                奥穂の神田の泥は天然の保湿成分と微粒子ミネラルを豊富に含んでおり、指定スクール水着姿で全身に泥をかけてもらうと<b>「田植えの泥がお肌を活性化させて、高級エステの泥パック以上に美肌になる！」</b>とSNSや口コミで大評判となりました。現在では農教大の学生（単位認定）だけでなく、県外からも多くの若い女性観光客が詰めかけます。
               </td>
             </tr>
           </table>
@@ -770,10 +817,9 @@
         <div class="content-box">
           <div class="section-heading">■ 活動記録・泥んこ写真館（2005年～2026年 年別アーカイブ）</div>
           <p style="margin:5px 0; font-size:13px;">
-            <b>【撮影者：保存会会長 田所源蔵（66歳） / 使用カメラ：コンパクトデジタルカメラ（Canon PowerShot / IXY）】</b><br>
-            毎年5月の土曜日・日曜日に開催された「泥かけ深田御田植祭」の記録です。<br>
-            <b>1日につき3枚（横サイズ［3:2］×2枚、縦サイズ［2:3］×1枚）</b>を、カメラのフィルターや加工を一切使わずそのままアップロードしています。<br>
-            下の年別リンクをクリックすると、その年の5月の土日ページに切り替わります。
+            <b>【撮影者：保存会会長 田所源蔵（66歳） / 使用カメラ：コンパクトデジタルカメラ（パンフォーカス・無加工）】</b><br>
+            毎年5月の土曜日・日曜日に開催された記録です。<b>泥の深さは常に「膝上（太ももまで沈む65cm）」、両サイドの畦道から男性陣の泥が飛び交い、全員全身泥だらけ</b>で頑張っています。<br>
+            <span style="color:#CC0000; font-weight:bold;">★各写真の枠をクリックすると、生成した画像をその場で選択して枠に表示できます！（または枠内に書かれた `DSCNxxxx.JPG` の名前でHTMLと同じフォルダに画像を置いても自動表示されます）</span>
           </p>
 
           <!-- 年別リンク（2005年～2026年） -->
@@ -781,7 +827,7 @@
             <b>▼ 閲覧したい年（西暦）をクリックしてください：</b><br>
             <div id="year-links-container" style="margin-top:6px;"></div>
             <div style="font-size:11px; color:#CC0000; margin-top:4px;">
-              ※【ご案内】2005年～2022年のページは現在サーバー容量移行のため「メンテナンス中」となっております。<b>2023年・2024年・2025年・2026年</b>をクリックしてご覧ください。
+              ※2005年～2022年はメンテナンス中です。<b>2023年・2024年・2025年・2026年</b>をクリックしてご覧ください。
             </div>
           </div>
 
@@ -798,40 +844,29 @@
 
           <table class="retro-table">
             <tr>
-              <th style="width:150px;">STEP 1：受付・指定水着へ着替え</th>
+              <th style="width:150px;">STEP 1：受付・指定水着へ着替え（女性のみ入田）</th>
               <td>
-                開催日（5月の各土曜日・日曜日）の朝9時30分までに「奥穂神社・社務所横テント」へ集合してください。保存会の農家メンバー（田所・松原）が受付いたします。<br>
-                更衣室にて<b>「指定のスクール水着（濃紺・白パイピング・細紐ワンピース型）」</b>に着替えます。<br>
-                ※田植えで全身泥だらけになるため、農教大生・一般女性観光客ともに全員この指定スクール水着での参加となります（受付にてS/M/L/LLサイズの無料レンタルあり。Tシャツの上着着用は指導スタッフ2名のみの特別ルールとなります）。
+                開催日の朝9時30分までに集合してください。田んぼに入って田植えができるのは<b>女性のみ</b>です。<br>
+                更衣室にて<b>「指定のスクール水着（濃紺・白T字パイピング・細紐ワンピース型）」</b>に着替えます（白いTシャツの上着着用はOGスタッフ2名のみの特別ルールですので、一般参加・学生の皆様は指定スクール水着のみで入田します）。
               </td>
             </tr>
             <tr>
-              <th>STEP 2：深田への入田（膝下水深）</th>
+              <th>STEP 2：深田への入田（泥の深さは膝上！）</th>
               <td>
-                10時00分のお祓い後、神田へ入ります。普通の田んぼより深く、<b>膝下（約45cm）まで一気に泥に浸かります</b>。泥の中には農教大卒業生の女性スタッフ2名（早乙女・水瀬）が待機して手を引いてくれますので安心してください。
+                お祭り用の特別な深田のため、入田すると<b>「膝上（太もも中ほど・約65cm）」まで一気に泥に浸かります</b>。泥の中には農教大OGの女性スタッフ2名が待機してサポートしてくれます。
               </td>
             </tr>
             <tr>
-              <th>STEP 3：田植え＆縁起の泥かけ</th>
+              <th>STEP 3：田植え＆両サイドからの泥投げ</th>
               <td>
-                スタッフのレクチャーを受けながら、1人で集中して、あるいは友人3人で横一列になって前かがみで奥深くまで苗を植えます。<br>
-                途中、周囲の男性陣や保存会の熊谷（71歳）から豊作と美肌を願う「縁起の泥」が優しくかけられます。バランスを崩して泥の中に倒れてしまっても、柔らかい泥がクッションになるので安全です。ドロドロになりながら笑って頑張りましょう！
-              </td>
-            </tr>
-            <tr>
-              <th>STEP 4：温水シャワー＆美肌実感</th>
-              <td>
-                田植え終了後、温水シャワーで泥を洗い流すと、泥パック以上のツルツル美肌を実感していただけます！
+                1人で、あるいは友人3人で横一列になって前かがみで奥深くまで苗を植えます。<br>
+                田植え中は、田んぼの周り（左右両サイドの畦道）から男性たちが縁起の泥を投げて喝を入れます。両サイドから泥が飛んできて頭から全身泥だらけになりますが、お肌が活性化する最高の美肌泥パックになります！
               </td>
             </tr>
           </table>
 
           <div class="section-heading">■ 参加予約フォーム（仮設）</div>
-          <div style="margin-bottom:10px;">
-            <span class="construction">🚧 工事中：CGIプログラムが動かないため、送信ボタンを押すと確認メッセージが出ます 🚧</span>
-          </div>
-
-          <form onsubmit="alert('【予約受付（仮）】\nお申し込みありがとうございます！\n保存会会長・田所のパソコンへ予約データを送信しました。'); return false;">
+          <form onsubmit="alert('【予約受付（仮）】\nお申し込みありがとうございます！'); return false;">
             <table class="retro-table">
               <tr>
                 <th style="width:180px;">お名前（代表者）</th>
@@ -840,51 +875,14 @@
               <tr>
                 <th>参加区分</th>
                 <td>
-                  <label><input type="radio" name="type" checked> 私立・農教大学の学生（必修単位認定枠）</label><br>
-                  <label><input type="radio" name="type"> 一般観光客・女性（指定スクール水着で田植え＆美肌泥パック体験）</label><br>
-                  <label><input type="radio" name="type"> 一般観光客・男性（畦道からの縁起泥かけ・応援枠）</label>
-                </td>
-              </tr>
-              <tr>
-                <th>ご希望の5月土日日程</th>
-                <td>
-                  <select>
-                    <option>第1土曜日（午前・午後の部）</option>
-                    <option>第1日曜日（午前・午後の部）</option>
-                    <option>第2土曜日（農教大1年合同枠・一般可）</option>
-                    <option>第2日曜日（農教大2年合同枠・一般可）</option>
-                    <option>第3土曜日（美肌泥パック特別開放デー）</option>
-                    <option>第3日曜日（美肌泥パック特別開放デー）</option>
-                    <option>第4土曜日（千秋楽前日祭）</option>
-                    <option>第4日曜日（御田植祭・本奉納）</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>参加形態・人数</th>
-                <td>
-                  <select>
-                    <option>1名でじっくり参加（ソロ田植え）</option>
-                    <option selected>友人3名で横一列に並んで参加（一番人気！）</option>
-                    <option>グループ参加（4名以上）</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>指定スクール水着サイズ</th>
-                <td>
-                  <select>
-                    <option>農教大生（大学購買部で購入した自前の指定スク水を持参）</option>
-                    <option>保存会無料レンタル希望（Sサイズ）</option>
-                    <option>保存会無料レンタル希望（Mサイズ）</option>
-                    <option>保存会無料レンタル希望（Lサイズ）</option>
-                  </select>
+                  <label><input type="radio" name="type" checked> 女性：私立・農教大学の学生（指定スクール水着で膝上深田の田植え・単位認定枠）</label><br>
+                  <label><input type="radio" name="type"> 女性：一般観光客（指定スクール水着で膝上深田の田植え＆全身美肌泥パック体験）</label><br>
+                  <label><input type="radio" name="type"> 男性：一般参加（田んぼの外・周りの畦道から泥を投げて喝を入れる役割 ※入田不可）</label>
                 </td>
               </tr>
               <tr>
                 <td colspan="2" style="text-align:center; padding:10px;">
                   <input type="submit" value="　この内容で予約を申し込む（仮）　" style="font-weight:bold; padding:5px 15px;">
-                  <input type="reset" value="クリア" style="padding:5px 10px;">
                 </td>
               </tr>
             </table>
@@ -904,26 +902,17 @@
             <tr>
               <td style="width:180px; font-weight:bold; background:#EFEFEF;">キャンパスと寮生活</td>
               <td>
-                穂乃国県瑞穂郡奥穂村字学園台1-1。<br>
-                四方を緑豊かな山々に囲まれた日本の田舎にある女子大学です。農業や田植えなどをメインとして学習しており、<b>学生の約9割がキャンパス内の寮（「若苗寮」「瑞穂寮」など）で共同生活</b>を送っています。
+                四方を山々に囲まれた日本の田舎にある農業特化の女子大学です。学生の約9割がキャンパス内の寮で共同生活を送っています。
               </td>
             </tr>
             <tr>
-              <td style="font-weight:bold; background:#EFEFEF;">単位認定と卒業後の繋がり</td>
-              <td>
-                5月から夏にかけて行われる地域の田植えイベントや「泥かけ深田御田植祭」への参加は、大学の<b>必修単位</b>として組み込まれています。また、卒業生（OG）の中からも当保存会のサポートスタッフとして活躍してくれる若手女性が輩出されています。
-              </td>
-            </tr>
-            <tr>
-              <td style="font-weight:bold; background:#EFEFEF;">服装の規定について<br>（旧スタイル・指定水着・スタッフ特別服）</td>
+              <td style="font-weight:bold; background:#EFEFEF;">深田御田植祭での服装規定</td>
               <td>
                 <ul>
-                  <li><b>【学内通常実習：白Tシャツ（へそ出し）＋ジャージショートパンツ】</b><br>
-                  学内の通常の実習では、ジャージタイプのショートパンツに、袖に筆文字で<b>「農教大」</b>と書かれた緩いオーバーサイズの白いTシャツを着用します。シャツが泥に入らないようお腹の横で結ぶ「へそ出しルックスタイル」が定番で、夏の猛暑に対応するため首回りが緩く、中は水着のトップスやカップ付きキャミソール、かわいいアンダーウェア等を着用しています。</li>
-                  <li><b>【深田御田植祭（参加者）：大学指定スクール水着】</b><br>
-                  当保存会の「泥かけ深田御田植祭」では、膝下まで浸かる深い泥田に入り、さらに周囲から縁起の泥をかけられて全身泥だらけになるため、参加学生は<b>「大学指定のスクール水着（濃紺・白T字パイピングのワンピース型）」</b>を着用することに統一されました。</li>
-                  <li><b>【深田御田植祭（OGスタッフ2名）：指定スクール水着＋Tシャツ着用】</b><br>
-                  泥に入りながら田植えのレクチャーやサポートを行う農教大卒業生スタッフ（26歳・24歳）のみ、スタッフ識別のための特別ルールとして、指定スクール水着の上に農教大の白Tシャツを着て参加することが許されています。</li>
+                  <li><b>【参加学生（必修単位）】：大学指定スクール水着のみ</b><br>
+                  膝上まである深い泥田に入り、両サイドから泥が飛んできて全身泥だらけになるため、参加学生は<b>「大学指定のスクール水着（濃紺・白T字パイピングのワンピース型）」</b>を着用します。</li>
+                  <li><b>【卒業生サポートスタッフ（2名）】：指定スクール水着＋白Tシャツ</b><br>
+                  泥に入りながら田植えのレクチャーやサポートを行う農教大OGスタッフ（26歳・24歳）のみ、特別ルールとして指定スクール水着の上に白いTシャツ（袖に筆文字「農教大」）を着ることが許されています。</li>
                 </ul>
               </td>
             </tr>
@@ -935,8 +924,7 @@
 
       <!-- 共通フッター -->
       <div class="content-box" style="text-align:center; font-size:12px; color:#333333; padding-bottom:20px;">
-        Copyright (C) 2005-2026 奥穂村・深田御田植祭保存会（会長：田所源蔵） All Rights Reserved.<br>
-        〒999-0123 穂乃国県瑞穂郡奥穂村大字深田字神田1番地（奥穂神社社務所内）
+        Copyright (C) 2005-2026 奥穂村・深田御田植祭保存会（会長：田所源蔵） All Rights Reserved.
       </div>
 
     </td>
@@ -944,6 +932,69 @@
 </table>
 
 <script>
+  // ===== 画像アップロード＆ローカル保存（ブラウザ内保持）機能 =====
+  var currentUploadTargetFile = null;
+
+  function triggerUpload(fileName) {
+    currentUploadTargetFile = fileName;
+    var uploader = document.getElementById('global-photo-uploader');
+    uploader.value = '';
+    uploader.click();
+  }
+
+  document.getElementById('global-photo-uploader').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    if (!file || !currentUploadTargetFile) return;
+
+    var reader = new FileReader();
+    reader.onload = function(evt) {
+      var dataUrl = evt.target.result;
+      try {
+        localStorage.setItem('okuho_photo_' + currentUploadTargetFile, dataUrl);
+      } catch (err) {
+        // 容量超過時はメモリ上のみ反映
+      }
+      applyPhotoToDom(currentUploadTargetFile, dataUrl);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function applyPhotoToDom(fileName, srcData) {
+    var imgEl = document.getElementById('img-' + fileName);
+    if (imgEl) {
+      imgEl.src = srcData;
+      imgEl.style.display = 'block';
+    }
+  }
+
+  function restoreSavedPhotos() {
+    var imgs = document.querySelectorAll('img.real-photo');
+    for (var i = 0; i < imgs.length; i++) {
+      var id = imgs[i].id; // "img-DSCNxxxx.JPG"
+      var fileName = id.replace('img-', '');
+      try {
+        var saved = localStorage.getItem('okuho_photo_' + fileName);
+        if (saved) {
+          imgs[i].src = saved;
+          imgs[i].style.display = 'block';
+        }
+      } catch (e) {}
+    }
+  }
+
+  function clearSavedPhotos() {
+    if (!confirm('画面上でクリック登録した画像をリセットしますか？（フォルダ内の実ファイル読み込みは維持されます）')) return;
+    try {
+      var keys = Object.keys(localStorage);
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i].indexOf('okuho_photo_') === 0) {
+          localStorage.removeItem(keys[i]);
+        }
+      }
+    } catch (e) {}
+    location.reload();
+  }
+
   // メニューページ切り替え
   function showPage(pageId) {
     var pages = document.querySelectorAll('.page-section');
@@ -951,49 +1002,50 @@
       pages[i].classList.remove('active');
     }
     document.getElementById(pageId).classList.add('active');
+    restoreSavedPhotos();
     window.scrollTo(0, 0);
   }
 
   // 2023年～2026年の5月の全土曜日・日曜日の実カレンダー日付データ
   var mayWeekendSchedule = {
     2023: [
-      { date: "5月6日(土)",  tag: "初日・農教大1年A班", weather: "快晴（26℃）", fileBase: 3101 },
-      { date: "5月7日(日)",  tag: "農教大1年B班・観光開放", weather: "晴れ（25℃）", fileBase: 3124 },
+      { date: "5月6日(土)",  tag: "初日・農教大1年A班", weather: "快晴（26℃）", fileBase: 3100 },
+      { date: "5月7日(日)",  tag: "農教大1年B班・観光開放", weather: "晴れ（25℃）", fileBase: 3120 },
       { date: "5月13日(土)", tag: "農教大2年・若苗寮生枠", weather: "薄曇り（24℃）", fileBase: 3150 },
-      { date: "5月14日(日)", tag: "県外女性観光客・美肌泥パック体験", weather: "快晴（27℃）", fileBase: 3182 },
+      { date: "5月14日(日)", tag: "県外女性観光客・美肌泥パック体験", weather: "快晴（27℃）", fileBase: 3180 },
       { date: "5月20日(土)", tag: "本宮前夜祭・深田奥植え神事", weather: "快晴（28℃）", fileBase: 3210 },
-      { date: "5月21日(日)", tag: "春季例大祭・大泥かけ奉納", weather: "快晴（29℃）", fileBase: 3245 },
+      { date: "5月21日(日)", tag: "春季例大祭・大泥かけ奉納", weather: "快晴（29℃）", fileBase: 3240 },
       { date: "5月27日(土)", tag: "農教大3年ゼミ合同・単位認定", weather: "晴れ（26℃）", fileBase: 3280 },
-      { date: "5月28日(日)", tag: "5月千秋楽・全身泥パック感謝祭", weather: "快晴（28℃）", fileBase: 3312 }
+      { date: "5月28日(日)", tag: "5月千秋楽・全身泥パック感謝祭", weather: "快晴（28℃）", fileBase: 3310 }
     ],
     2024: [
-      { date: "5月4日(土)",  tag: "GW特別開放・県外観光客＆農教大有志", weather: "快晴（27℃）", fileBase: 4105 },
-      { date: "5月5日(日)",  tag: "GW美肌泥かけ祭り・瑞穂寮生枠", weather: "快晴（28℃）", fileBase: 4132 },
-      { date: "5月11日(土)", tag: "農教大1年必修・初深田チャレンジ", weather: "晴れ（25℃）", fileBase: 4168 },
-      { date: "5月12日(日)", tag: "農教大1年必修・泥んこ笑顔コンテスト", weather: "快晴（26℃）", fileBase: 4195 },
-      { date: "5月18日(土)", tag: "本奉納・膝下50cm最深部田植え", weather: "快晴（29℃）", fileBase: 4220 },
-      { date: "5月19日(日)", tag: "本奉納・縁起泥かけ大盛況デー", weather: "晴れ（28℃）", fileBase: 4254 },
-      { date: "5月25日(土)", tag: "農教大2年・観光女子合同体験", weather: "薄曇り（25℃）", fileBase: 4288 },
-      { date: "5月26日(日)", tag: "5月最終日・神田泥パック納め", weather: "快晴（27℃）", fileBase: 4319 }
+      { date: "5月4日(土)",  tag: "GW特別開放・県外観光客＆農教大有志", weather: "快晴（27℃）", fileBase: 4100 },
+      { date: "5月5日(日)",  tag: "GW美肌泥かけ祭り・瑞穂寮生枠", weather: "快晴（28℃）", fileBase: 4130 },
+      { date: "5月11日(土)", tag: "農教大1年必修・初深田チャレンジ", weather: "晴れ（25℃）", fileBase: 4160 },
+      { date: "5月12日(日)", tag: "農教大1年必修・泥んこ笑顔コンテスト", weather: "快晴（26℃）", fileBase: 4190 },
+      { date: "5月18日(土)", tag: "本奉納・膝上65cm最深部田植え", weather: "快晴（29℃）", fileBase: 4220 },
+      { date: "5月19日(日)", tag: "本奉納・縁起泥投げ大盛況デー", weather: "晴れ（28℃）", fileBase: 4250 },
+      { date: "5月25日(土)", tag: "農教大2年・観光女子合同体験", weather: "薄曇り（25℃）", fileBase: 4280 },
+      { date: "5月26日(日)", tag: "5月最終日・神田泥パック納め", weather: "快晴（27℃）", fileBase: 4310 }
     ],
     2025: [
-      { date: "5月3日(土)",  tag: "GW初日・指定スク水泥かけ開き", weather: "快晴（26℃）", fileBase: 5012 },
-      { date: "5月4日(日)",  tag: "GW中日・東京＆名古屋観光ツアー枠", weather: "快晴（28℃）", fileBase: 5045 },
-      { date: "5月10日(土)", tag: "農教大1年・地域農学科A組必修", weather: "晴れ（25℃）", fileBase: 5081 },
-      { date: "5月11日(日)", tag: "農教大1年・地域農学科B組必修", weather: "快晴（27℃）", fileBase: 5114 },
+      { date: "5月3日(土)",  tag: "GW初日・指定スク水泥かけ開き", weather: "快晴（26℃）", fileBase: 5010 },
+      { date: "5月4日(日)",  tag: "GW中日・東京＆名古屋観光ツアー枠", weather: "快晴（28℃）", fileBase: 5040 },
+      { date: "5月10日(土)", tag: "農教大1年・地域農学科A組必修", weather: "晴れ（25℃）", fileBase: 5080 },
+      { date: "5月11日(日)", tag: "農教大1年・地域農学科B組必修", weather: "快晴（27℃）", fileBase: 5110 },
       { date: "5月17日(土)", tag: "奥穂神社・深田豊作祈願本祭（前編）", weather: "快晴（29℃）", fileBase: 5150 },
-      { date: "5月18日(日)", tag: "奥穂神社・深田豊作祈願本祭（後編）", weather: "快晴（30℃）", fileBase: 5189 },
-      { date: "5月24日(土)", tag: "農教大・若苗寮＆瑞穂寮対抗早植え", weather: "晴れ（27℃）", fileBase: 5223 },
+      { date: "5月18日(日)", tag: "奥穂神社・深田豊作祈願本祭（後編）", weather: "快晴（30℃）", fileBase: 5180 },
+      { date: "5月24日(土)", tag: "農教大・若苗寮＆瑞穂寮対抗早植え", weather: "晴れ（27℃）", fileBase: 5220 },
       { date: "5月25日(日)", tag: "一般女性観光客・美肌泥パック特別枠", weather: "快晴（28℃）", fileBase: 5260 },
-      { date: "5月31日(土)", tag: "5月末日・追加単位認定＆泥かけ納め", weather: "快晴（29℃）", fileBase: 5298 }
+      { date: "5月31日(土)", tag: "5月末日・追加単位認定＆泥かけ納め", weather: "快晴（29℃）", fileBase: 5290 }
     ],
     2026: [
       { date: "5月2日(土)",  tag: "2026年開幕・一番泥かけ神事", weather: "快晴（26℃）", fileBase: 6010 },
       { date: "5月3日(日)",  tag: "GW特別枠・県外女子旅グループ参加", weather: "快晴（27℃）", fileBase: 6038 },
       { date: "5月9日(土)",  tag: "農教大1年（第22期生）必修単位・前半", weather: "晴れ（25℃）", fileBase: 6072 },
       { date: "5月10日(日)", tag: "農教大1年（第22期生）必修単位・後半", weather: "快晴（28℃）", fileBase: 6105 },
-      { date: "5月16日(土)", tag: "例大祭・最深部（膝下50cm）奥植えの儀", weather: "快晴（29℃）", fileBase: 6144 },
-      { date: "5月17日(日)", tag: "例大祭・大泥かけ奉納＆美肌祈願", weather: "快晴（30℃）", fileBase: 6180 },
+      { date: "5月16日(土)", tag: "例大祭・最深部（膝上65cm）奥植えの儀", weather: "快晴（29℃）", fileBase: 6144 },
+      { date: "5月17日(日)", tag: "例大祭・両サイド大泥投げ＆美肌祈願", weather: "快晴（30℃）", fileBase: 6180 },
       { date: "5月23日(土)", tag: "農教大2年・3年合同ゼミ＆観光客枠", weather: "晴れ（27℃）", fileBase: 6215 },
       { date: "5月24日(日)", tag: "美肌泥パック口コミ人気・満員御礼デー", weather: "快晴（28℃）", fileBase: 6251 },
       { date: "5月30日(土)", tag: "5月最終週・追い込み単位認定枠", weather: "快晴（29℃）", fileBase: 6288 },
@@ -1001,23 +1053,23 @@
     ]
   };
 
-  // 日付ごとの3枚の写真（横3:2 ×2枚、縦2:3 ×1枚）のローテーション内容
+  // 日付ごとの3枚の写真（横3:2 ×2枚、縦2:3 ×1枚）のローテーション内容（※すべて「膝上」設定に統一）
   var photoPatterns = [
     {
       h1_title: "【友人3人で横一列・前かがみで田植え】",
-      h1_desc: "指定の紺色スクール水着（白パイピング）を着た仲良し3人組。膝下まで深い泥田に横一列で並び、前かがみで苗を植えながら、男衆から優しく縁起の泥をかけられて大笑いしています。",
-      h2_title: "【名物！深い田んぼに足を取られて転倒】",
-      h2_desc: "膝下まで埋まる泥から足を抜こうとしてバランスを崩し、泥田の中にバシャン！と尻もちをついて倒れてしまった瞬間です。近くでOGスタッフも笑顔で手を差し伸べています。",
-      v1_title: "【1人で奥深くまで苗を植える姿】",
-      v1_desc: "コンデジを縦に構えて撮影。膝下まで泥に沈みながら、1人で真剣に田んぼの奥深くへ苗を差し込んでいます。肩や頬にかかった泥が太陽でツヤツヤ光り、まさに天然の美肌泥パック状態です。"
+      h1_desc: "指定の紺色スクール水着（白T字パイピング）を着た仲良し3人組。膝上（太もも）まで深い泥田に横一列で並び、前かがみで苗を植えながら、外の畦道の男衆から両サイドから縁起の泥を投げられて全身泥だらけで大笑いしています。",
+      h2_title: "【名物！膝上まで深い田んぼに足を取られて転倒】",
+      h2_desc: "膝上まで埋まる深い泥から足を抜こうとしてバランスを崩し、泥田の中にバシャン！と尻もちをついて倒れてしまった瞬間です。苗を片手で高く掲げて笑っています。",
+      v1_title: "【1人で膝上まで泥に沈み、奥深くまで苗を植える姿】",
+      v1_desc: "コンデジを縦に構えて撮影。膝上（太もも）まで泥に沈みながら、1人で田んぼの奥深くへ苗を差し込んでいます。両サイドから飛んでくる泥で頭から水着まで全身ツヤツヤの美肌泥パック状態です。"
     },
     {
-      h1_title: "【ドロドロになりながら3人で笑顔の奮闘】",
-      h1_desc: "水着の紺色や白い肩紐が見えなくなるほど全身に滑らかな泥を塗ってもらい、「泥パック以上にお肌がツルツルになる！」と笑いながら前かがみで頑張る3人組です。",
-      h2_title: "【縁起の泥かけを受けてしぶきが上がる瞬間】",
-      h2_desc: "畦道の熊谷さん（71歳）たちから「今年も豊作だぞー！」と優しく泥をかけてもらい、背中や肩がドロドロになりながら嬉しそうに歓声を上げています（コンデジのズームで撮影）。",
+      h1_title: "【全身ドロドロになりながら3人で笑顔の奮闘】",
+      h1_desc: "膝上まで泥に浸かり、水着の紺色や白い肩紐が見えなくなるほど両サイドから滑らかな泥をかけてもらい、「泥パック以上にお肌がツルツルになる！」と笑いながら前かがみで頑張る3人組です。",
+      h2_title: "【両サイドからの喝入れ泥投げでしぶきが上がる瞬間】",
+      h2_desc: "田んぼの外（左右の畦道）にいる男性陣から「今年も豊作だぞー！」と縁起の泥が飛び交い、背中や肩まで全身泥だらけになりながら歓声を上げています。",
       v1_title: "【全身ドロドロで満面の笑みピース（1人）】",
-      v1_desc: "縦位置で全身を撮影。膝下は完全に泥の中、頭から水着まで全身チョコフォンデュのように泥まみれになりながら、白い歯を見せて満面の笑みで頑張っています。"
+      v1_desc: "縦位置で撮影。膝上まで完全に泥の中、頭から指定スクール水着まで全身泥まみれになりながら、白い歯を見せて満面の笑みで頑張っています。"
     }
   ];
 
@@ -1039,45 +1091,28 @@
   function selectYear(year) {
     for (var y = 2005; y <= 2026; y++) {
       var el = document.getElementById('ylink-' + y);
-      if (el) {
-        el.classList.remove('active-year');
-      }
+      if (el) el.classList.remove('active-year');
     }
     var currentEl = document.getElementById('ylink-' + year);
-    if (currentEl) {
-      currentEl.classList.add('active-year');
-    }
+    if (currentEl) currentEl.classList.add('active-year');
 
     var display = document.getElementById('archive-display-area');
 
-    // 2023年より前（2005～2022年）はメンテナンス中表示
     if (year < 2023) {
-      var eraNote = (year <= 2018)
-        ? "当時は「緩いオーバーサイズ白Tシャツ（袖に筆文字で『農教大』・横結びのへそ出しルック）＋ジャージショートパンツ」で田植えを行っていた時期の貴重な記録写真（5月各土日・1日3枚）が収められております。"
-        : "指定スクール水着への移行期間および深田整備中の記録写真（5月各土日・1日3枚）が収められております。";
-
       display.innerHTML =
         '<div class="maint-box">' +
           '<div class="construction" style="font-size:16px; margin-bottom:12px;">🚧 【' + year + '年（5月土日） 写真館】 現在サーバーメンテナンス中です 🚧</div>' +
           '<p style="font-size:14px; color:#333333; max-width:640px; margin:10px auto;">' +
-            '<b>【保存会会長・田所よりお詫び】</b><br>' +
-            'いつもホームページをご覧いただきありがとうございます。<br>' +
-            '<b>' + year + '年5月の土曜日・日曜日</b>に撮影した写真データ（コンパクトデジカメ撮影・各日3枚）は、' +
-            '無料ホームページサーバーの容量上限（50MB）を超えてしまったため、現在息子の力を借りて別サーバーへ引っ越し作業（メンテナンス中）を行っております。<br><br>' +
-            '※なお、' + eraNote + '<br><br>' +
-            '<b style="color:#CC0000;">★ 2023年・2024年・2025年・2026年の写真館はすべて正常にご覧いただけますので、上の年別リンクから【2023年】～【2026年】をクリックしてください！</b>' +
+            '<b>' + year + '年5月の土曜日・日曜日</b>に撮影した写真データは、現在無料サーバーの容量制限のため別サーバーへ移行作業中（メンテナンス中）です。<br>' +
+            '<b style="color:#CC0000;">★ 2023年・2024年・2025年・2026年の写真館はすべて正常にご覧いただけます！</b>' +
           '</p>' +
           '<div style="margin-top:12px;">' +
-            '<button onclick="selectYear(2026)" style="padding:6px 14px; font-weight:bold; cursor:pointer;">⇒ 最新【2026年】の写真館を見る</button> ' +
-            '<button onclick="selectYear(2025)" style="padding:6px 14px; cursor:pointer;">⇒ 【2025年】を見る</button> ' +
-            '<button onclick="selectYear(2024)" style="padding:6px 14px; cursor:pointer;">⇒ 【2024年】を見る</button> ' +
-            '<button onclick="selectYear(2023)" style="padding:6px 14px; cursor:pointer;">⇒ 【2023年】を見る</button>' +
+            '<button onclick="selectYear(2026)" style="padding:6px 14px; font-weight:bold; cursor:pointer;">⇒ 最新【2026年】の写真館を見る</button>' +
           '</div>' +
         '</div>';
       return;
     }
 
-    // 2023年～2026年の5月土日ごとの写真館描画
     var schedule = mayWeekendSchedule[year];
     var navHtml = '<div class="date-nav-bar"><b>📅 ' + year + '年5月の開催日（土日）クイックジャンプ：</b><br>';
     for (var i = 0; i < schedule.length; i++) {
@@ -1103,19 +1138,24 @@
           '</tr>' +
           '<tr>' +
             '<td colspan="3" style="background:#F4F9F4; font-size:12px; padding:5px 8px;">' +
-              '※指定衣装：私立農教大学・保存会指定スクール水着（濃紺・白T字パイピング・細ストラップ） ／ 田んぼ水深：膝下（深田45cm） ／ カメラ：コンデジ無加工（フィルター解除・パンフォーカス）' +
+              '※田植え（入田）：女性のみ（指定スクール水着着用） ／ 泥の深さ：<b>膝上（太ももまで沈む65cm）</b> ／ 男性：田んぼの周り（両サイド）から泥投げ' +
             '</td>' +
           '</tr>' +
           '<tr>' +
             '<!-- 1枚目：横 3:2 -->' +
             '<td style="width:36%; text-align:center;">' +
-              '<div style="font-weight:bold; font-size:12px; color:#005500; margin-bottom:4px;">① 横写真（比率 3:2）</div>' +
-              '<div class="photo-frame-3x2">' +
-                '<span class="ratio-badge">横 3:2 (600×400)</span>' +
-                '<div style="margin:auto 0;">' +
-                  '<b>[' + f1 + ']</b><br>' +
-                  '指定スク水（紺・白ライン）<br>' +
-                  '膝下まで深い泥田・泥かけ風景' +
+              '<div style="font-weight:bold; font-size:12px; color:#005500; margin-bottom:4px;">① 横写真（3:2）: ' + f1 + '</div>' +
+              '<div class="photo-slot slot-3x2" onclick="triggerUpload(\'' + f1 + '\')" title="クリックして画像を選択（または同じフォルダに ' + f1 + ' を配置）">' +
+                '<img class="real-photo" id="img-' + f1 + '" src="' + f1 + '" onerror="this.style.display=\'none\'">' +
+                '<div class="slot-fallback">' +
+                  '<span class="ratio-badge">横 3:2</span>' +
+                  '<div>' +
+                    '<b>[' + f1 + ']</b><br>' +
+                    '3人横一列・膝上泥没<br>' +
+                    '両サイドから泥飛来<br>' +
+                    '<span class="upload-hint">📁クリックで画像選択</span>' +
+                  '</div>' +
+                  '<span></span>' +
                 '</div>' +
                 '<div class="cam-stamp">' + dateStamp + '</div>' +
               '</div>' +
@@ -1126,13 +1166,18 @@
 
             '<!-- 2枚目：横 3:2 -->' +
             '<td style="width:36%; text-align:center;">' +
-              '<div style="font-weight:bold; font-size:12px; color:#005500; margin-bottom:4px;">② 横写真（比率 3:2）</div>' +
-              '<div class="photo-frame-3x2">' +
-                '<span class="ratio-badge">横 3:2 (600×400)</span>' +
-                '<div style="margin:auto 0;">' +
-                  '<b>[' + f2 + ']</b><br>' +
-                  '指定スク水・泥だらけハプニング<br>' +
-                  'コンデジ素人画角スナップ' +
+              '<div style="font-weight:bold; font-size:12px; color:#005500; margin-bottom:4px;">② 横写真（3:2）: ' + f2 + '</div>' +
+              '<div class="photo-slot slot-3x2" onclick="triggerUpload(\'' + f2 + '\')" title="クリックして画像を選択（または同じフォルダに ' + f2 + ' を配置）">' +
+                '<img class="real-photo" id="img-' + f2 + '" src="' + f2 + '" onerror="this.style.display=\'none\'">' +
+                '<div class="slot-fallback">' +
+                  '<span class="ratio-badge">横 3:2</span>' +
+                  '<div>' +
+                    '<b>[' + f2 + ']</b><br>' +
+                    '膝上深田で転倒・泥しぶき<br>' +
+                    '全身泥だらけ笑顔<br>' +
+                    '<span class="upload-hint">📁クリックで画像選択</span>' +
+                  '</div>' +
+                  '<span></span>' +
                 '</div>' +
                 '<div class="cam-stamp">' + dateStamp + '</div>' +
               '</div>' +
@@ -1143,14 +1188,19 @@
 
             '<!-- 3枚目：縦 2:3 -->' +
             '<td style="width:28%; text-align:center;">' +
-              '<div style="font-weight:bold; font-size:12px; color:#880000; margin-bottom:4px;">③ 縦写真（比率 2:3）</div>' +
-              '<div class="photo-frame-2x3">' +
-                '<span class="ratio-badge">縦 2:3 (400×600)</span>' +
-                '<div style="margin:auto 0;">' +
-                  '<b>[' + f3 + ']</b><br><br>' +
-                  '縦位置全身スナップ<br>' +
-                  '膝下まで泥没・<br>' +
-                  '全身美肌泥パック状態' +
+              '<div style="font-weight:bold; font-size:12px; color:#880000; margin-bottom:4px;">③ 縦写真（2:3）: ' + f3 + '</div>' +
+              '<div class="photo-slot slot-2x3" onclick="triggerUpload(\'' + f3 + '\')" title="クリックして画像を選択（または同じフォルダに ' + f3 + ' を配置）">' +
+                '<img class="real-photo" id="img-' + f3 + '" src="' + f3 + '" onerror="this.style.display=\'none\'">' +
+                '<div class="slot-fallback">' +
+                  '<span class="ratio-badge">縦 2:3</span>' +
+                  '<div>' +
+                    '<b>[' + f3 + ']</b><br>' +
+                    '1人縦位置スナップ<br>' +
+                    '膝上まで泥没・<br>' +
+                    '全身美肌泥パック<br>' +
+                    '<span class="upload-hint">📁クリックで画像選択</span>' +
+                  '</div>' +
+                  '<span></span>' +
                 '</div>' +
                 '<div class="cam-stamp">' + dateStamp + '</div>' +
               '</div>' +
@@ -1165,15 +1215,17 @@
     display.innerHTML =
       '<div style="background:#E6F5E6; border:2px solid #006600; padding:8px 12px; margin-top:10px;">' +
         '<b style="font-size:16px; color:#004400;">■ ' + year + '年（5月・土日全' + schedule.length + '日間） 泥かけ深田御田植祭 写真館</b><br>' +
-        '<span style="font-size:12px;">各日とも左から<b>「横（3:2）」「横（3:2）」「縦（2:3）」の3枚組</b>で掲載しています。</span>' +
+        '<span style="font-size:12px;">各日とも左から<b>「横（3:2）」「横（3:2）」「縦（2:3）」の3枚組</b>です。写真枠をクリックすると生成した画像を直接セットできます。</span>' +
       '</div>' +
       navHtml +
       tablesHtml;
+
+    restoreSavedPhotos();
   }
 
-  // ページ読み込み時に初期化
   window.onload = function() {
     initYearLinks();
+    restoreSavedPhotos();
   };
 </script>
 
